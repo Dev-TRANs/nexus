@@ -1,0 +1,71 @@
+---
+const navLinks: { href: string; label: string; }[] = [
+  { href: '#about', label: 'ABOUT US' },
+  { href: '#posts', label: '活動・投稿' },
+  { href: '#team', label: '運営体制' },
+  { href: '#contact', label: 'お問い合わせ' }
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-18">
+      <a href="#" class="flex items-center gap-1">
+        <img src="./nexus_logo.svg" alt="NEXUS LAB Logo" class="w-8 h-8 mr-1" />
+        <div class="flex-col">
+          <span class="text-xl font-medium tracking-wide text-slate-900 leading-0">NEXUS LAB</span>
+          <p class="text-xs text-slate-500 font-medium">EXPLORE. CONNECT. CREATE IMPACT.</p>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a href={link.href} class="text-sm font-semibold text-slate-600 hover:text-sky-600 flex items-center gap-1.5">
+            <span>{link.label}</span>
+          </a>
+        ))}
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-btn" type="button" aria-label="Toggle menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 shadow-xl">
+    {navLinks.map(link => (
+      <a href={link.href} class="mobile-link block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-sky-50 hover:text-sky-600">{link.label}</a>
+    ))}
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-icon-open');
+  const closeIcon = document.getElementById('menu-icon-close');
+  const links = document.querySelectorAll('.mobile-link');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    openIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      openIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+</script>

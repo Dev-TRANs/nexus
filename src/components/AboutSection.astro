@@ -1,0 +1,97 @@
+---
+// AboutSection.astro
+const features = [
+  {
+    emoji: "🎓",
+    title: "学生が主役",
+    description: "学生自身がつくる、学生のためのコミュニティ。多様なバックグラウンドを持つ学生が集い、切磋琢磨できる環境を提供します。",
+    bgLight: "bg-sky-50",
+    borderLight: "border-sky-200",
+    badgeColor: "text-sky-700 bg-sky-100"
+  },
+  {
+    emoji: "🤝",
+    title: "企業・社会人との接点",
+    description: "第一線で活躍する企業や社会人との出会いを通じて、リアルな学びやキャリアの可能性を広げます。",
+    bgLight: "bg-amber-50",
+    borderLight: "border-amber-200",
+    badgeColor: "text-amber-800 bg-amber-100"
+  },
+  {
+    emoji: "💡",
+    title: "共創から生まれる価値",
+    description: "アイデアを共有し、チームで課題解決に挑む共創の場を提供。新しい価値を社会に実装するきっかけをつくります。",
+    bgLight: "bg-blue-50",
+    borderLight: "border-blue-200",
+    badgeColor: "text-blue-800 bg-blue-100"
+  },
+  {
+    emoji: "🚀",
+    title: "未来へのアクション",
+    description: "一人ひとりの挑戦を後押しし、社会にインパクトを与える次世代リーダーの育成を目指します。",
+    bgLight: "bg-emerald-50",
+    borderLight: "border-emerald-200",
+    badgeColor: "text-emerald-800 bg-emerald-100"
+  }
+];
+---
+
+<section id="about" class="py-24 bg-white relative overflow-hidden">
+  <!-- Subtle decorative shapes -->
+  <div class="absolute top-1/2 -right-40 w-96 h-96 bg-sky-100/60 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section Header -->
+    <div class="space-y-4 reveal text-left">
+      <div class="inline-block pb-1.5 border-b-2 border-sky-500">
+        <span class="text-base sm:text-lg font-black text-sky-600 tracking-wider uppercase">
+          About NEXUS LAB
+        </span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+        学生と社会をつなぎ、<br />
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-sky-600 to-blue-600">次世代の挑戦</span>を加速させるプラットフォーム
+      </h2>
+      <!-- Slogan & Concept Introduction (Open Layout) -->
+      <div class="mt-8 text-slate-600 leading-relaxed text-base sm:text-lg">
+        <p>
+          NEXUS SPARK / NEXUS LAB は、学生が企業・社会人・他団体とつながり、学び・共創・挑戦を通じて未来を切り拓くためのプラットフォームです。
+        </p>
+        <p>
+          オフラインイベントや共創プロジェクトを通じて、新しい価値の創造とイノベーションの実現を目指しています。
+        </p>
+      </div>
+    </div>
+
+
+    <!-- 4 Organization Features -->
+    <div class="mt-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {features.map((feature, idx) => (
+          <div 
+            class={`reveal bg-white border ${feature.borderLight} rounded-3xl p-7 flex flex-col justify-between`}
+            style={`transition-delay: ${idx * 100}ms;`}
+          >
+            <div>
+              <div class={`w-16 h-16 rounded-2xl ${feature.bgLight} border ${feature.borderLight} shadow-xs flex items-center justify-center text-3xl mb-6`}>
+                {feature.emoji}
+              </div>
+              <div class="flex items-center gap-2 mb-2.5">
+                <span class={`text-[11px] font-extrabold px-2.5 py-0.5 rounded-full ${feature.badgeColor} uppercase tracking-wider`}>
+                  FEATURE 0{idx + 1}
+                </span>
+              </div>
+              <h4 class="text-xl font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
+                {feature.title}
+              </h4>
+              <p class="mt-3 text-slate-600 text-sm leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

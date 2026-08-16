@@ -1,0 +1,174 @@
+---
+// PostsSection.astro - Horizontal Scrollable Posts & Activity Updates
+interface Post {
+  title: string;
+  excerpt: string;
+  date: string;
+  imageUrl: string;
+  url: string;
+}
+
+const posts: Post[] = [
+  {
+    title: "【開催レポ】第1回 学生×企業共創ミートアップ「NEXUS PITCH」を実施しました！",
+    excerpt: "15の学生団体と8社の企業が集結。リアルな課題をもとに本気でディスカッションを行い、3つの共同PJが発足しました。",
+    date: "2026.07.28",
+    imageUrl: "https://placehold.jp/640x335.png",
+    url: "https://note.com/nexusspark"
+  },
+  {
+    title: "【お知らせ】8/23開催「NEXUS SPARK TOKYO」登壇企業＆タイムライン第1弾公開",
+    excerpt: "GROWTH文京飯田橋で開催される大型共創イベントのセッション詳細を発表！学生の参加エントリーも好評受付中です。",
+    date: "2026.07.15",
+    imageUrl: "https://placehold.jp/640x335.png",
+    url: "https://note.com/nexusspark"
+  },
+  {
+    title: "【インタビュー】インド渡航プログラムで得た「越境」と「不確実性に飛び込む力」",
+    excerpt: "BOOTCAMP IN INDIAに参加したコアメンバーが語る、海外での実践型学習と学生コミュニティ運営への想い。",
+    date: "2026.06.30",
+    imageUrl: "https://placehold.jp/640x335.png",
+    url: "https://note.com/nexusspark"
+  },
+  {
+    title: "【共同企画】大和大学ビジネスコミュニティ(YBC)と合同ビジネスプラン勉強会を開催",
+    excerpt: "関西圏の熱量の高い学生とオンライン・オフラインをつなぎ、事業立ち上げに向けたアイデア壁打ちを行いました。",
+    date: "2026.06.18",
+    imageUrl: "https://placehold.jp/640x335.png",
+    url: "https://note.com/nexusspark"
+  },
+  {
+    title: "【共創PJ】学生アイデアで企業の新規事業課題に挑む「OPEN LAB」始動！",
+    excerpt: "協賛パートナー企業とともに、実際のビジネス課題をテーマにした3ヶ月間の実践型共創プログラムがスタート。",
+    date: "2026.05.25",
+    imageUrl: "https://placehold.jp/640x335.png",
+    url: "https://note.com/nexusspark"
+  },
+  {
+    title: "【コラム】「学生が主役」のプラットフォームを創る私たちが目指す未来",
+    excerpt: "就活やサークルにとどまらない、学生と社会人がフラットに価値を創出する新しいエコシステムの意義について。",
+    date: "2026.05.10",
+    imageUrl: "https://placehold.jp/640x335.png",
+    url: "https://note.com/nexusspark"
+  }
+];
+---
+
+<section id="posts" class="py-24 bg-slate-50/50 border-t border-slate-200/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header & Scroll Buttons -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+      <div class="space-y-3">
+        <div class="inline-block pb-1.5 border-b-2 border-sky-500">
+          <span class="text-base sm:text-lg font-black text-sky-600 tracking-wider uppercase">
+            LATEST POSTS & ACTIVITIES
+          </span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          活動実績・投稿一覧
+        </h2>
+        <p class="text-slate-600 text-base font-medium">
+          NEXUS LAB の活動レポート、イベント告知などをNoteで発信しています。
+        </p>
+      </div>
+
+      <!-- Navigation Scroll Buttons -->
+      <div class="hidden md:flex items-center gap-3 self-start md:self-end">
+        <button
+          id="posts-scroll-prev"
+          type="button"
+          aria-label="前へスクロール"
+          class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-sky-400 hover:bg-sky-50 text-slate-700 hover:text-sky-600 flex items-center justify-center transition-colors cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+        <button
+          id="posts-scroll-next"
+          type="button"
+          aria-label="次へスクロール"
+          class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-sky-400 hover:bg-sky-50 text-slate-700 hover:text-sky-600 flex items-center justify-center transition-colors cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Horizontal Scroll Carousel -->
+    <div class="relative reveal">
+      <div
+        id="posts-carousel"
+        class="flex gap-6 overflow-x-auto pb-6 pt-1 scroll-smooth snap-x snap-mandatory no-scrollbar"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
+      >
+        {posts.map((post, idx) => (
+          <article
+            class="snap-start shrink-0 w-75 sm:w-90 bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-xs hover:border-sky-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+            style={`transition-delay: ${idx * 60}ms;`}
+          >
+            <div>
+              <!-- Visual Header / Thumbnail Image -->
+              <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+                <img
+                  src={post.imageUrl}
+                  loading="lazy"
+                  class="w-full h-full object-cover"
+                />
+                <!-- Gradient Overlay for Category Badge Readability -->
+                <div class="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/10"></div>
+
+                <!-- Top Category Badge & Date Overlay -->
+                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
+                  <span class="text-xs font-bold text-white/90 bg-black/40 px-2 py-0.5 rounded-md backdrop-blur-xs">
+                    {post.date}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Content Area -->
+              <div class="p-6">
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-sky-600 transition-colors leading-snug line-clamp-2 mb-3">
+                  {post.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
+                  {post.excerpt}
+                </p>
+              </div>
+            </div>
+
+            <!-- Footer Action Link -->
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100">
+              <a href={post.url} target="_blank" rel="noopener noreferrer" class="flex items-center justify-start gap-2 text-xs font-bold text-sky-600 group-hover:text-sky-700 transition-colors">
+                記事を読む
+                <svg class="w-4 h-4 text-sky-600 group-hover:text-sky-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const carousel = document.getElementById('posts-carousel');
+  const prevBtn = document.getElementById('posts-scroll-prev');
+  const nextBtn = document.getElementById('posts-scroll-next');
+
+  const scrollAmount = 380; // card width + gap
+
+  prevBtn?.addEventListener('click', () => {
+    carousel?.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    carousel?.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+</script>
