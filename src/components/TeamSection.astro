@@ -10,22 +10,12 @@ const members: Member[] = [
   {
     name: "大湾啓正",
     role: "代表",
-    message: "msg",
+    message: "",
   },
   {
     name: "佐々木杏奈",
     role: "副代表",
-    message: "msg",
-  },
-  {
-    name: "ABC",
-    role: "役職",
-    message: "msg",
-  },
-  {
-    name: "ABC",
-    role: "役職",
-    message: "msg",
+    message: "",
   }
 ];
 ---
@@ -50,7 +40,7 @@ const members: Member[] = [
           class="bg-white border border-slate-200 rounded-3xl p-7 shadow-xs flex flex-col justify-between reveal"
           style={`transition-delay: ${idx * 100}ms;`}
         >
-          <div class="flex *:min-w-0">
+          <div class="flex flex-col md:flex-row *:min-w-0">
             <div class="flex-2">
               <div class="h-full flex items-center justify-center max-h-60">
                 <img src={member.imageUrl || "/nexus_logo_full.png"} loading="lazy" class="max-h-full" />
