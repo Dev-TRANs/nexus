@@ -1,5 +1,5 @@
 ---
-// Footer.astro - Bright Theme
+import { navLinks } from "./Header.astro";
 const currentYear = new Date().getFullYear();
 ---
 
@@ -17,10 +17,9 @@ const currentYear = new Date().getFullYear();
 
       <!-- Links -->
       <nav class="flex flex-wrap justify-center gap-6 text-xs sm:text-sm font-bold text-slate-600">
-        <a href="#about" class="hover:text-sky-600 transition-colors">ABOUT US</a>
-        <a href="#posts" class="hover:text-sky-600 transition-colors">活動・投稿</a>
-        <a href="#team" class="hover:text-sky-600 transition-colors">運営体制</a>
-        <a href="#contact" class="hover:text-sky-600 transition-colors">お問い合わせ</a>
+        {navLinks.map(link => (
+          <a href={link.href} class="font-semibold hover:text-sky-600">{link.label}</a>
+        ))}
       </nav>
     </div>
 
