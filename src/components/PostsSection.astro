@@ -1,57 +1,55 @@
 ---
-// PostsSection.astro - Horizontal Scrollable Posts & Activity Updates
+// TODO: 画像をキャッシュする
+const username = process.env.NOTE_USERNAME || "nexusspark";
 interface Post {
   title: string;
-  excerpt: string;
+  description: string;
   date: string;
   imageUrl: string;
-  url: string;
+  noteUrl: string;
+  isPinned: boolean;
 }
 
-const posts: Post[] = [
-  {
-    title: "【開催レポ】第1回 学生×企業共創ミートアップ「NEXUS PITCH」を実施しました！",
-    excerpt: "15の学生団体と8社の企業が集結。リアルな課題をもとに本気でディスカッションを行い、3つの共同PJが発足しました。",
-    date: "2026.07.28",
-    imageUrl: "https://placehold.jp/640x335.png",
-    url: "https://note.com/nexusspark"
-  },
-  {
-    title: "【お知らせ】8/23開催「NEXUS SPARK TOKYO」登壇企業＆タイムライン第1弾公開",
-    excerpt: "GROWTH文京飯田橋で開催される大型共創イベントのセッション詳細を発表！学生の参加エントリーも好評受付中です。",
-    date: "2026.07.15",
-    imageUrl: "https://placehold.jp/640x335.png",
-    url: "https://note.com/nexusspark"
-  },
-  {
-    title: "【インタビュー】インド渡航プログラムで得た「越境」と「不確実性に飛び込む力」",
-    excerpt: "BOOTCAMP IN INDIAに参加したコアメンバーが語る、海外での実践型学習と学生コミュニティ運営への想い。",
-    date: "2026.06.30",
-    imageUrl: "https://placehold.jp/640x335.png",
-    url: "https://note.com/nexusspark"
-  },
-  {
-    title: "【共同企画】大和大学ビジネスコミュニティ(YBC)と合同ビジネスプラン勉強会を開催",
-    excerpt: "関西圏の熱量の高い学生とオンライン・オフラインをつなぎ、事業立ち上げに向けたアイデア壁打ちを行いました。",
-    date: "2026.06.18",
-    imageUrl: "https://placehold.jp/640x335.png",
-    url: "https://note.com/nexusspark"
-  },
-  {
-    title: "【共創PJ】学生アイデアで企業の新規事業課題に挑む「OPEN LAB」始動！",
-    excerpt: "協賛パートナー企業とともに、実際のビジネス課題をテーマにした3ヶ月間の実践型共創プログラムがスタート。",
-    date: "2026.05.25",
-    imageUrl: "https://placehold.jp/640x335.png",
-    url: "https://note.com/nexusspark"
-  },
-  {
-    title: "【コラム】「学生が主役」のプラットフォームを創る私たちが目指す未来",
-    excerpt: "就活やサークルにとどまらない、学生と社会人がフラットに価値を創出する新しいエコシステムの意義について。",
-    date: "2026.05.10",
-    imageUrl: "https://placehold.jp/640x335.png",
-    url: "https://note.com/nexusspark"
+interface apiResp {
+  data: {
+    contents: {
+      type: string;
+      name: string;
+      description: string | null; // nullの場合がほとんど？
+      key: string;
+      publishAt: string;
+      eyecatch: string;
+      body: string;
+      isPinned: boolean;
+      [key: string]: unknown;
+    }[];
+    isLastPage: boolean;
+    totalCount: number;
   }
-];
+}
+
+const posts: Post[] = [];
+
+// 現状1ページにつき6件のノート
+for (let page = 1; page <= 2; page++) {
+  const resp = await fetch(`https://note.com/api/v2/creators/${username}/contents?kind=note&page=${page}`);
+  const data: apiResp = await resp.json();
+  if (!data || !data.data || !data.data.contents) {
+    throw new Error("Failed to fetch posts data from the API.");
+  }
+
+  posts.push(...data.data.contents.map((content) => ({
+    title: content.name,
+    description: content.body,
+    date: new Date(content.publishAt).toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
+    imageUrl: content.eyecatch || "https://placehold.jp/640x335.png",
+    noteUrl: `https://note.com/${username}/n/${content.key}`,
+    isPinned: content.isPinned
+  })));
+  if (data.data.isLastPage) {
+    break;
+  }
+}
 ---
 
 <section id="posts" class="py-24 bg-slate-50/50 border-t border-slate-200/80">
@@ -119,13 +117,18 @@ const posts: Post[] = [
                   class="w-full h-full object-cover"
                 />
                 <!-- Gradient Overlay for Category Badge Readability -->
-                <div class="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/10"></div>
+                <div class="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-black/10"></div>
 
                 <!-- Top Category Badge & Date Overlay -->
                 <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
                   <span class="text-xs font-bold text-white/90 bg-black/40 px-2 py-0.5 rounded-md backdrop-blur-xs">
                     {post.date}
                   </span>
+                  {post.isPinned && (
+                    <span class="text-xs font-bold text-white/90 bg-black/40 px-2 py-0.5 rounded-md backdrop-blur-xs">
+                      Pinned
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -135,14 +138,14 @@ const posts: Post[] = [
                   {post.title}
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
-                  {post.excerpt}
+                  {post.description}
                 </p>
               </div>
             </div>
 
             <!-- Footer Action Link -->
             <div class="px-6 pb-6 pt-4 border-t border-slate-100">
-              <a href={post.url} target="_blank" rel="noopener noreferrer" class="flex items-center justify-start gap-2 text-xs font-bold text-sky-600 group-hover:text-sky-700 transition-colors">
+              <a href={post.noteUrl} target="_blank" rel="noopener noreferrer" class="flex items-center justify-start gap-2 text-xs font-bold text-sky-600 group-hover:text-sky-700 transition-colors">
                 記事を読む
                 <svg class="w-4 h-4 text-sky-600 group-hover:text-sky-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
