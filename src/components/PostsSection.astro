@@ -1,55 +1,7 @@
 ---
-// TODO: 画像をキャッシュする
-const username = process.env.NOTE_USERNAME || "nexusspark";
-interface Post {
-  title: string;
-  description: string;
-  date: string;
-  imageUrl: string;
-  noteUrl: string;
-  isPinned: boolean;
-}
+import { getArticles } from "../lib/articles"
 
-interface apiResp {
-  data: {
-    contents: {
-      type: string;
-      name: string;
-      description: string | null; // nullの場合がほとんど？
-      key: string;
-      publishAt: string;
-      eyecatch: string;
-      body: string;
-      isPinned: boolean;
-      [key: string]: unknown;
-    }[];
-    isLastPage: boolean;
-    totalCount: number;
-  }
-}
-
-const posts: Post[] = [];
-
-// 現状1ページにつき6件のノート
-for (let page = 1; page <= 2; page++) {
-  const resp = await fetch(`https://note.com/api/v2/creators/${username}/contents?kind=note&page=${page}`);
-  const data: apiResp = await resp.json();
-  if (!data || !data.data || !data.data.contents) {
-    throw new Error("Failed to fetch posts data from the API.");
-  }
-
-  posts.push(...data.data.contents.map((content) => ({
-    title: content.name,
-    description: content.body,
-    date: new Date(content.publishAt).toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.'),
-    imageUrl: content.eyecatch || "https://placehold.jp/640x335.png",
-    noteUrl: `https://note.com/${username}/n/${content.key}`,
-    isPinned: content.isPinned
-  })));
-  if (data.data.isLastPage) {
-    break;
-  }
-}
+const posts = await getArticles();
 ---
 
 <section id="posts" class="py-24 bg-slate-50/50 border-t border-slate-200/80">
@@ -112,7 +64,7 @@ for (let page = 1; page <= 2; page++) {
               <!-- Visual Header / Thumbnail Image -->
               <div class="relative h-48 w-full overflow-hidden bg-slate-100">
                 <img
-                  src={post.imageUrl}
+                  src={`/thumbnails/${post.key}.${post.imageExt}`}
                   loading="lazy"
                   class="w-full h-full object-cover"
                 />
