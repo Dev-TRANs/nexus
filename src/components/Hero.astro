@@ -18,11 +18,11 @@
           <span class="text-transparent bg-clip-text bg-linear-to-r from-sky-600 via-blue-600 to-amber-500">本気でぶつかり合う</span><br />
           共創プラットフォーム。
         </h1>
-        <!-- Subtext -->
+        <!-- Subtext
         <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-medium">
           NEXUS LAB は、学生が企業・社会人・他団体とつながり、<wbr />学び・共創・挑戦を通じて未来を切り拓くためのプラットフォームです。<br />
           オフラインイベントや共創プロジェクトを通じて、<wbr />新しい価値の創造とイノベーションの実現を目指しています。
-        </p>
+        </p> -->
       </div>
 
       <!-- Right Column: Vector Illustration -->
@@ -59,7 +59,7 @@
             <!-- Background Backdrop Elements -->
             <circle cx="260" cy="210" r="165" fill="url(#heroBgCircle)" />
             <circle cx="260" cy="210" r="140" stroke="#bae6fd" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
-            
+
             <!-- Connection Lines & Network Nodes Linking Left (Student) & Right (Enterprise) -->
             <path d="M150 140 C 210 110, 260 120, 370 140" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6 6" fill="none" />
             <path d="M150 290 C 220 330, 300 320, 370 290" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6 6" fill="none" />
@@ -71,25 +71,52 @@
 
             <!-- Center Spark / Lightbulb / Innovation Nexus Concept -->
             <g filter="url(#softCardShadow)">
-              <!-- Floating Central Innovation Card -->
+              <!-- Floating Central Co-creation Card -->
               <rect x="210" y="105" width="100" height="95" rx="18" fill="#ffffff" stroke="#bae6fd" stroke-width="2" />
-              
-              <!-- Idea Spark Core Bulb -->
-              <circle cx="260" cy="142" r="22" fill="url(#heroAmberGold)" />
-              <path d="M253 140 L260 132 L267 140 L260 152 Z" fill="#ffffff" />
-              <circle cx="260" cy="142" r="7" fill="#ffffff" fill-opacity="0.9" />
-              
-              <!-- Rays of Impact & Spark -->
-              <path d="M260 112 L260 117" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M236 124 L240 128" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M284 124 L280 128" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M230 144 L235 144" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M285 144 L290 144" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" />
 
-              <!-- Base Connector of Card -->
-              <rect x="238" y="174" width="44" height="12" rx="6" fill="#e0f2fe" />
-              <rect x="246" y="178" width="28" height="4" rx="2" fill="#0284c7" />
+              <!-- Student circle (left) — larger -->
+              <circle cx="231" cy="143" r="15" fill="#e0f7ff" stroke="#38bdf8" stroke-width="2"/>
+              <!-- Diamond mortarboard (top-down view), scaled for circle -->
+              <polygon points="231,129 241,137 231,145 221,137" fill="#38bdf8"/>
+              <line x1="221" y1="137" x2="241" y2="137" stroke="#0ea5e9" stroke-width="0.8" opacity="0.35"/>
+              <line x1="231" y1="129" x2="231" y2="145" stroke="#0ea5e9" stroke-width="0.8" opacity="0.35"/>
+              <!-- Top button -->
+              <circle cx="231" cy="129" r="2" fill="#0284c7"/>
+              <!-- Head band arc -->
+              <path d="M224 143 Q231 149 238 143" stroke="#0284c7" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <!-- Tassel -->
+              <line x1="241" y1="137" x2="244" y2="148" stroke="#0369a1" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="244" cy="151" r="2.5" fill="#f59e0b"/>
+
+
+              <!-- Central spark circle — larger -->
+              <circle cx="260" cy="143" r="13" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
+              <!-- 4-pointed star -->
+              <path d="M260 132 L261.8 140.2 L270 143 L261.8 145.8 L260 154 L258.2 145.8 L250 143 L258.2 140.2 Z" fill="#f59e0b"/>
+
+              <!-- Company circle (right) — larger -->
+              <circle cx="289" cy="143" r="15" fill="#ede9fe" stroke="#6366f1" stroke-width="2"/>
+              <!-- Flat-top office building (no triangular roof) -->
+              <rect x="281" y="130" width="16" height="23" rx="1.5" fill="#6366f1"/>
+              <!-- 3 rows × 2 cols of windows -->
+              <rect x="284" y="133" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="291" y="133" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="284" y="139" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="291" y="139" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="284" y="145" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="291" y="145" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <!-- Door -->
+              <rect x="285.5" y="149" width="6" height="4" rx="0.5" fill="white" opacity="0.55"/>
+
+              <!-- Bottom flow indicator: 3 colored dots (no text) -->
+              <rect x="222" y="168" width="76" height="16" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+              <circle cx="241" cy="176" r="4.5" fill="#38bdf8"/>
+              <line x1="245.5" y1="176" x2="255.5" y2="176" stroke="#cbd5e1" stroke-width="1.5"/>
+              <circle cx="260" cy="176" r="5" fill="#f59e0b"/>
+              <line x1="264.5" y1="176" x2="274.5" y2="176" stroke="#cbd5e1" stroke-width="1.5"/>
+              <circle cx="279" cy="176" r="4.5" fill="#6366f1"/>
             </g>
+
 
             <!-- LEFT SIDE: Student Creator / Innovator Figure -->
             <g>
@@ -98,12 +125,12 @@
               <!-- Casual Hoodie / Collar Detail -->
               <path d="M125 255 C135 275, 155 275, 165 255 Z" fill="#0369a1" />
               <path d="M135 258 L145 285 L155 258" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none" />
-              
+
               <!-- Student Head & Hair -->
               <circle cx="145" cy="215" r="26" fill="#fed7aa" />
               <!-- Modern Haircut -->
               <path d="M120 215 C120 188, 140 182, 160 185 C172 188, 175 200, 175 212 C168 205, 155 205, 148 208 C140 210, 130 205, 120 215 Z" fill="#1e293b" />
-              
+
               <!-- Student Laptop on Table -->
               <rect x="150" y="275" width="55" height="34" rx="4" fill="#334155" />
               <polygon points="145,309 210,309 205,314 150,314" fill="#64748b" />
@@ -137,20 +164,53 @@
               <path d="M325 293 Q 338 285, 354 280" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" fill="none" />
             </g>
 
-            <!-- Floating Collaborative Assets (Puzzle, Rocket, Gear, Spark Nodes) -->
-            <!-- Left-Top: Puzzle Piece (Students bringing fresh pieces) -->
+            <!-- Left-Top: Student Card -->
             <g filter="url(#softCardShadow)">
               <rect x="75" y="115" width="52" height="52" rx="14" fill="#ffffff" stroke="#e0f2fe" stroke-width="1.5" />
-              <path d="M92 134 C92 129, 97 129, 97 134 C97 138, 107 138, 107 134 C107 129, 112 129, 112 134 L112 148 L88 148 Z" fill="url(#heroSkyBlue)" />
+              <!-- Diamond-top mortarboard board (top-down view) -->
+              <polygon points="101,121 117,132 101,143 85,132" fill="#38bdf8"/>
+              <!-- Board crease lines (slight shading) -->
+              <line x1="85" y1="132" x2="117" y2="132" stroke="#0ea5e9" stroke-width="1" opacity="0.35"/>
+              <line x1="101" y1="121" x2="101" y2="143" stroke="#0ea5e9" stroke-width="1" opacity="0.35"/>
+              <!-- Top center button -->
+              <circle cx="101" cy="121" r="3.5" fill="#0284c7"/>
+              <!-- Head band arc below board -->
+              <path d="M90 139 Q101 148 112 139" stroke="#0284c7" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <!-- Tassel cord from right corner -->
+              <line x1="117" y1="132" x2="122" y2="150" stroke="#0369a1" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Tassel ball -->
+              <circle cx="122" cy="154" r="4.5" fill="#f59e0b"/>
             </g>
 
-            <!-- Right-Top: Rocket / Launching Innovation (Enterprise scaling impact) -->
+
+
+
+            <!-- Right-Top: Company Card -->
             <g filter="url(#softCardShadow)">
-              <rect x="390" y="115" width="52" height="52" rx="14" fill="#ffffff" stroke="#fef3c7" stroke-width="1.5" />
-              <circle cx="416" cy="141" r="16" fill="url(#heroEmerald)" />
-              <!-- Rocket Shape -->
-              <path d="M416 130 C411 135, 410 144, 410 148 C414 148, 423 147, 428 142 C428 135, 423 130, 416 130 Z" fill="#ffffff" />
-              <path d="M410 148 L406 152 M413 141 L417 145" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" />
+              <rect x="390" y="115" width="52" height="52" rx="14" fill="#ffffff" stroke="#ede9fe" stroke-width="1.5" />
+              <!-- Left small building -->
+              <rect x="395" y="133" width="11" height="22" rx="1" fill="#818cf8"/>
+              <rect x="397" y="136" width="3" height="2.5" rx="0.3" fill="white" opacity="0.85"/>
+              <rect x="397" y="141" width="3" height="2.5" rx="0.3" fill="white" opacity="0.85"/>
+              <rect x="397" y="146" width="3" height="2.5" rx="0.3" fill="white" opacity="0.85"/>
+              <!-- Center tall building (main) -->
+              <rect x="407" y="122" width="18" height="33" rx="1" fill="#6366f1"/>
+              <!-- 3 rows × 2 cols windows -->
+              <rect x="410" y="125" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="418" y="125" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="410" y="131" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="418" y="131" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="410" y="137" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <rect x="418" y="137" width="4" height="3.5" rx="0.5" fill="white" opacity="0.9"/>
+              <!-- Center building door -->
+              <rect x="413" y="147" width="6" height="8" rx="0.5" fill="white" opacity="0.5"/>
+              <!-- Right small building -->
+              <rect x="426" y="129" width="11" height="26" rx="1" fill="#a5b4fc"/>
+              <rect x="428" y="132" width="3" height="2.5" rx="0.3" fill="white" opacity="0.85"/>
+              <rect x="428" y="137" width="3" height="2.5" rx="0.3" fill="white" opacity="0.85"/>
+              <rect x="428" y="142" width="3" height="2.5" rx="0.3" fill="white" opacity="0.85"/>
+              <!-- Ground line -->
+              <rect x="393" y="155" width="44" height="3" rx="1.5" fill="#c7d2fe"/>
             </g>
 
             <!-- Center Spark / Handshake Fusion Effect in the middle air -->
@@ -179,8 +239,8 @@
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">PICK UP EVENT</span>
-              <span class="text-xs text-slate-500 font-semibold">2026.08.23 SUN @GROWTH文京飯田橋</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">PICK UP</span>
+              <span class="text-xs text-slate-500 font-semibold">2026.08.23 SUN<br class="" />@GROWTH文京飯田橋</span>
             </div>
             <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
               共創イベント「NEXUS SPARK TOKYO」参加エントリー受付中！
