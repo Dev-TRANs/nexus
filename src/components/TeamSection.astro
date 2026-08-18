@@ -10,7 +10,37 @@ const members: Member[] = [
   {
     name: "大湾啓正",
     role: "代表",
-    message: "",
+    message: `「つながりから、新たな挑戦を生み出す。」
+学生団体 NEXUS LAB 代表の大湾 啓正です。
+
+NEXUS LABは、「つながりから、新たな挑戦を生み出す。」という想いのもと、学生・学生団体・企業・スタートアップなど、立場や分野を越えた人々が出会い、新しい挑戦が生まれる場所をつくるために設立しました。
+
+私自身、これまでさまざまな活動に取り組む中で、一つの出会いやつながりが、新しい機会や挑戦へと発展していく瞬間を何度も経験してきました。
+
+一方で、「挑戦したい」という想いを持っていても、仲間や情報、社会との接点がないことで、その一歩を踏み出せない学生も少なくありません。
+
+だからこそNEXUS LABは、単に人を集めるだけのコミュニティではなく、出会った人同士がつながり、そのつながりから実際の行動やプロジェクトが生まれる場所でありたいと考えています。
+
+「NEXUS」は、つながり。
+「LAB」は、挑戦と実験の場。
+
+所属する大学も、年齢も、活動している分野も関係ありません。
+
+学生と学生。
+学生と企業。
+学生とスタートアップ。
+そして、まだ出会っていない挑戦者同士。
+
+その間に新しい接点をつくり、そこからこれまでになかった挑戦を生み出していく。
+
+学生だからできること。
+学生だからこそ生み出せる熱量。
+そして、学生という枠さえ越えて社会と共創していくこと。
+
+NEXUS LABを、誰かの「やってみたい」が「やってみよう」に変わる場所へ。
+
+私たちは、つながりの可能性を信じ、これからも新たな挑戦を生み出し続けます。`,
+    imageUrl: "/team/harumasa_ohwan.jpg",
   },
   {
     name: "佐々木杏奈",
@@ -34,10 +64,28 @@ const members: Member[] = [
     </div>
 
     <!-- Members Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-      {members.map((member, idx) => (
+    <div class="bg-white border border-slate-300 rounded-3xl p-7 shadow-xs flex flex-col justify-between reveal mb-6 sm:mb-8">
+      <div class="flex flex-col md:flex-row *:min-w-0">
+        <div class="flex-1">
+          <div class="h-full flex flex-col">
+            <p class="text-sm text-slate-500 mt-1">{members[0].role}</p>
+            <h3 class="text-2xl font-bold text-slate-900">{members[0].name}</h3>
+            <div class="grow flex items-center">
+              <img src={members[0].imageUrl!} loading="lazy" class="p-8 pt-6" />
+            </div>
+          </div>
+        </div>
+        <div class="flex-2">
+          <div class="rounded-2xl bg-slate-50 border border-slate-200 p-4.5 sm:p-6 max-h-140 overflow-y-auto">
+            <p class="text-slate-700 whitespace-pre-line leading-relaxed text-[15px] sm:text-base">{members[0].message}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-6 sm:gap-8">
+      {members.slice(1, members.length).map((member, idx) => (
         <div
-          class="bg-white border border-slate-200 rounded-3xl p-7 shadow-xs flex flex-col justify-between reveal"
+          class="bg-white border border-slate-300 rounded-3xl p-7 shadow-xs flex flex-col justify-between reveal"
           style={`transition-delay: ${idx * 100}ms;`}
         >
           <div class="flex flex-col md:flex-row *:min-w-0">
@@ -49,7 +97,7 @@ const members: Member[] = [
             <div class="flex-3 ml-4 wrap-anywhere">
               <p class="text-sm text-slate-500 mt-1">{member.role}</p>
               <h3 class="text-2xl font-bold text-slate-900">{member.name}</h3>
-              <p class="text-slate-600 mt-2">{member.message}</p>
+              <p class="text-slate-600 mt-2 whitespace-pre-line">{member.message}</p>
             </div>
           </div>
         </div>
