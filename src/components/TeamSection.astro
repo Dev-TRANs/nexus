@@ -45,7 +45,52 @@ NEXUS LABを、誰かの「やってみたい」が「やってみよう」に�
   {
     name: "佐々木杏奈",
     role: "副代表",
-    message: "",
+    message: `「誰かの挑戦のきっかけになれる場所をつくりたい。」
+
+NEXUS LAB副代表の佐々木杏奈です。
+
+私はこれまで、学生団体での活動や
+福祉・教育・ビジネスなど
+さまざまな分野に関心を持って
+活動してきました。
+その中で強く感じたのは、
+挑戦の始まりには「人との出会い」が
+あるということです。
+
+自分一人では
+知らなかった考え方を教えてくれる人
+新しい世界を見せてくれる人
+「やってみたら？」と
+背中を押してくれる人。
+そうした出会いが、一人ひとりの
+可能性を大きく広げてくれると
+私は考えています。
+
+一方で、「何かやってみたい」という
+気持ちはあっても、どう動けばいいのか分からなかったり、相談できる人が
+いなかったりして、最初の一歩を
+踏み出せない学生も多いと思います。
+
+だからこそNEXUS LABを
+ただ人が集まる場所ではなく、
+「やってみたい」が「やってみよう」に変わる場所にしていきたいです。
+
+学生同士はもちろん、企業や社会人、
+さまざまな分野で挑戦する方々との
+つながりをつくり、そこで生まれた出会いを新しいアイデアや活動へつなげていく。
+
+私自身も副代表として
+さまざまな人の声に耳を傾けながら
+一人ひとりの「挑戦したい」という想いを大切にしていきます。
+
+年齢や所属、活動分野に関係なく、誰もが新しい一歩を踏み出せる。
+
+そんな場所を、みんなと一緒につくっていきたいと思っています。
+
+NEXUS LABから生まれる一つひとつの出会いが、誰かの未来を変えるきっかけになることを信じて。
+
+これからも、つながりの先にある新しい可能性を、皆さんと一緒に生み出していきます。`,
+    imageUrl: "/team/anna_sasaki.jpg",
   }
 ];
 ---
@@ -64,25 +109,30 @@ NEXUS LABを、誰かの「やってみたい」が「やってみよう」に�
     </div>
 
     <!-- Members Grid -->
-    <div class="bg-white border border-slate-300 rounded-3xl p-7 shadow-xs flex flex-col justify-between reveal mb-6 sm:mb-8">
-      <div class="flex flex-col md:flex-row *:min-w-0">
-        <div class="flex-1">
-          <div class="h-full flex flex-col">
-            <p class="text-sm text-slate-500 mt-1">{members[0].role}</p>
-            <h3 class="text-2xl font-bold text-slate-900">{members[0].name}</h3>
-            <div class="grow flex items-center">
-              <img src={members[0].imageUrl!} loading="lazy" class="p-8 pt-6" />
+    {members.slice(0, 2).map((member, idx) => (
+      <div
+        class="bg-white border border-slate-300 rounded-3xl p-7 shadow-xs flex flex-col justify-between reveal mb-6 sm:mb-8"
+        style={`transition-delay: ${idx * 100}ms;`}
+      >
+        <div class="flex flex-col md:flex-row *:min-w-0">
+          <div class="flex-1">
+            <div class="h-full flex flex-col">
+              <p class="text-sm text-slate-500 mt-1">{member.role}</p>
+              <h3 class="text-2xl font-bold text-slate-900">{member.name}</h3>
+              <div class="grow flex items-center">
+                <img src={member.imageUrl!} loading="lazy" class="p-8 pt-6" />
+              </div>
+            </div>
+          </div>
+          <div class="flex-2">
+            <div class="rounded-2xl bg-slate-50 border border-slate-200 p-4.5 sm:p-6 max-h-140 overflow-y-auto">
+              <p class="text-slate-700 whitespace-pre-line leading-relaxed text-[15px] sm:text-base">{member.message}</p>
             </div>
           </div>
         </div>
-        <div class="flex-2">
-          <div class="rounded-2xl bg-slate-50 border border-slate-200 p-4.5 sm:p-6 max-h-140 overflow-y-auto">
-            <p class="text-slate-700 whitespace-pre-line leading-relaxed text-[15px] sm:text-base">{members[0].message}</p>
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-1 gap-6 sm:gap-8">
+    ))}
+    <!-- <div class="grid grid-cols-1 md:grid-cols-1 gap-6 sm:gap-8">
       {members.slice(1, members.length).map((member, idx) => (
         <div
           class="bg-white border border-slate-300 rounded-3xl p-7 shadow-xs flex flex-col justify-between reveal"
@@ -102,6 +152,6 @@ NEXUS LABを、誰かの「やってみたい」が「やってみよう」に�
           </div>
         </div>
       ))}
-    </div>
+    </div> -->
   </div>
 </section>
