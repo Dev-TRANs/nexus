@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import AboutSection from '../components/AboutSection.astro';
+import ProgramsSection from '../components/ProgramsSection.astro';
 import PostsSection from '../components/PostsSection.astro';
 import TeamSection from '../components/TeamSection.astro';
 import ContactSection from '../components/ContactSection.astro';
@@ -20,6 +21,7 @@ Astro.response.headers.set("Cache-Control", "public, max-age=0, s-maxage=1800");
   <main class="grow">
     <Hero />
     <AboutSection />
+    <ProgramsSection />
     <PostsSection />
     <TeamSection />
     <ContactSection />

@@ -1,0 +1,480 @@
+---
+// ProgramsSection.astro - NEXUS LABの主要プログラム紹介
+import noteIcon from "../assets/note_icon.svg";
+
+const sparkTargets = [
+  { name: "企業", en: "ENTERPRISE", note: "オープンイノベーション・新卒採用" },
+  { name: "スタートアップ", en: "STARTUP", note: "事業共創・アライアンス・仲間集め" },
+  { name: "行政・自治体", en: "GOVERNMENT", note: "地域活性化・若者挑戦支援" },
+  { name: "VC・金融機関", en: "FINANCIAL & VC", note: "次世代スタートアップへの投資・育成" },
+  { name: "大学・教育機関", en: "ACADEMIA", note: "産学連携・学生の実践教育推進" },
+  { name: "地域活動団体・プロジェクト", en: "COMMUNITY & PROJECTS", note: "地域共創プロジェクトとの連携" },
+  { name: "その他", en: "INNOVATORS", note: "枠組みを越えて新しい価値を創る人" },
+];
+
+const sparkExpansions = [
+  {
+    title: "NEXUS SPARK TOKYO",
+    tag: "2026年8月開催",
+    desc: "首都圏の学生・企業・スタートアップが集結する第1弾フラッグシップイベントを開催。"
+  },
+  {
+    title: "NEXUS SPARK KANSAI",
+    tag: "展開中",
+    desc: "関西圏の自治体・企業・学生コミュニティと連携し、地域色を生かした共創を展開。"
+  },
+  {
+    title: "地域から、全国へ",
+    desc: "NEXUS SPARKを通じて、その地域だからこそ生まれる出会いと挑戦を全国へつないでいきます。"
+  }
+];
+
+const sparkNote = {
+  url: "https://note.com/nexusspark/n/n565cd5aabe97",
+  title: "NEXUS SPARK TOKYO2026イベント結果報告書",
+  caption: "当日の様子をnoteで発信中"
+};
+
+
+const dialogueThemes = [
+  { name: "起業・スタートアップ", en: "STARTUP", note: "事業立ち上げ・挑戦の軌跡とリアルな試行錯誤" },
+  { name: "地域創生・まちづくり", en: "LOCAL & REGION", note: "地域の現場課題と新たな価値創出" },
+  { name: "企業の新規事業", en: "INNOVATION", note: "組織での価値創造とオープンイノベーション" },
+  { name: "スポーツ・エンタメ", en: "SPORTS & ENT", note: "熱狂の創出と現場のリーダーシップ" },
+  { name: "社会課題", en: "SOCIAL & FUTURE", note: "時代を見据えた本質的な課題と未来の選択肢" },
+  { name: "若者の挑戦・リーダーシップ", en: "LEADERSHIP", note: "自分自身の意思で一歩を踏み出す力" },
+  { name: "これからの社会・未来", en: "FUTURE", note: "地域や登壇者の想いに合わせた柔軟なテーマ設定" },
+];
+
+const dialogueNote = {
+  url: "https://note.com/nexusspark/n/nb9b5d5365442",
+  title: "新規事業「NEXUS DIALOGUE」始動 — 対話から、次の一歩を。",
+  caption: "企画の立ち上げ背景やDIALOGUEに込めた想いをnoteで発信中"
+};
+---
+
+<section id="programs" class="py-24 bg-slate-50/50 border-t border-slate-200/80 relative overflow-hidden">
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/3 -right-40 w-96 h-96 bg-sky-100/60 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-4xl space-y-4 reveal text-left mb-16">
+      <div class="inline-block pb-1.5 border-b-2 border-sky-500">
+        <span class="text-base sm:text-lg font-black text-sky-600 tracking-wider uppercase">
+          PROGRAMS
+        </span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+        共創を生み出す
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-sky-600 via-blue-600 to-amber-500">2つのプログラム</span>
+      </h2>
+      <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
+        大規模な熱量と出会いを生む「SPARK」と、本音の対話と知見を深める「DIALOGUE」。<br class="hidden sm:inline" />
+        NEXUS LAB は、動と静の2つの場を通じて、学生と社会の挑戦を加速させています。
+      </p>
+    </div>
+
+    <!-- NEXUS SPARK-->
+    <div class="reveal bg-white border border-amber-200/90 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-md shadow-amber-950/5 mb-16 relative overflow-hidden">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-slate-100">
+        <div class="flex items-center gap-4">
+          <!-- Clean SVG Icon (Spark / Energy) -->
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-linear-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20 shrink-0">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
+            NEXUS SPARK
+          </h3>
+        </div>
+      </div>
+
+      <div class="my-8 space-y-4">
+        <h4 class="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 leading-snug">
+          つながりから、<span class="text-transparent bg-clip-text bg-linear-to-r from-amber-600 to-orange-600">新たな挑戦</span>が動き出す。
+        </h4>
+        <div class="text-slate-600 text-base sm:text-lg leading-relaxed space-y-3 font-medium">
+          <p>
+            NEXUS SPARKは、学生・企業・スタートアップ・行政・金融機関など、多様な立場の人々が一つの場所に集まり、新しいつながりと挑戦を生み出す共創型イベントです。
+          </p>
+          <p>
+            一方的に話を聞くだけのイベントではなく、登壇者と参加者、企業と学生、地域と挑戦者が互いに関わり合うことで、普段は交わることのない人やアイデアが出会う場をつくります。
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
+        <div class="bg-linear-to-br from-amber-50/80 via-orange-50/40 to-white border border-amber-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <h5 class="text-lg font-black text-amber-950 mb-3">
+              NEXUS SPARKが目指すもの
+            </h5>
+            <div class="my-4 w-full h-px rounded-full bg-amber-200/80"></div>
+            <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+              イベント当日の盛り上がりだけで終わらせるのではなく、その日に生まれたつながりを、その後の共創や実践につなげていくこと。<br />
+              学生だからこそつくれる柔軟な場と、企業・行政・スタートアップなどが持つ知見やリソースを掛け合わせ、地域から新しい挑戦が生まれるきっかけをつくります。
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <h5 class="text-lg font-black text-slate-900 mb-3">
+              当日のプログラム・仕掛け
+            </h5>
+            <div class="my-4 w-full h-px rounded-full bg-slate-200/80"></div>
+            <ul class="space-y-4 text-sm sm:text-base text-slate-700">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-md bg-amber-500 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5 shadow-xs">
+                  01
+                </span>
+                <div>
+                  <strong class="font-bold text-slate-900">トークセッション：</strong>
+                  最前線で挑戦するリーダーや起業家が登壇し、リアルな知見と問いを提示。
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-md bg-amber-500 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5 shadow-xs">
+                  02
+                </span>
+                <div>
+                  <strong class="font-bold text-slate-900">交流企画・ネットワーキング：</strong>
+                  垣根を取り払い、普段交わらない異分野・異世代が本気で交わる場。
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-md bg-amber-500 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5 shadow-xs">
+                  03
+                </span>
+                <div>
+                  <strong class="font-bold text-slate-900">テーマ別セッション：</strong>
+                  持ち帰った視点を、その後のプロジェクト・事業・地域アクションへと直結。
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-8 pt-8 border-t border-slate-100">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              <h5 class="text-lg font-black text-slate-900">
+                主な参加対象
+              </h5>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">
+              学生・若手世代を中心に、分野や所属を越えた幅広い方々の参加を想定しています。
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          <div class="sm:col-span-2 lg:col-span-1 p-5 rounded-2xl bg-linear-to-br from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/15 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-black tracking-widest uppercase bg-white/20 px-2 py-0.5 rounded">
+                  CORE TARGET
+                </span>
+                <span class="w-2 h-2 rounded-full bg-white"></span>
+              </div>
+              <div class="text-lg font-black tracking-tight">
+                学生・若手世代
+              </div>
+            </div>
+            <div class="text-xs text-amber-100 font-medium mt-1 pt-3 border-t border-white/20">
+              中心となる主役・次世代の挑戦者
+            </div>
+          </div>
+
+          {sparkTargets.map((target) => (
+            <div class="p-4 sm:p-4.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between group">
+              <div>
+                <span class="text-[10px] font-bold text-slate-400 tracking-wider mb-1.5">
+                  {target.en}
+                </span>
+                <div class="text-base font-bold text-slate-900">
+                  {target.name}
+                </div>
+              </div>
+              <div class="text-xs text-slate-500 font-medium mt-3 pt-2.5 border-t border-slate-200/60 leading-snug">
+                {target.note}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="my-8 pt-8 border-t border-slate-100">
+        <div class="mb-6">
+          <div class="inline-block text-xs font-black text-amber-700 uppercase tracking-wider mb-1">
+            AREA EXPANSION
+          </div>
+          <h5 class="text-lg sm:text-xl font-black text-slate-900">
+            開催展開
+          </h5>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {sparkExpansions.map(exp => (
+            <div class="p-5 sm:p-6 rounded-2xl bg-linear-to-b from-slate-50 to-white border border-slate-200/90 relative">
+              <div class="flex items-center justify-between mb-3">
+                {exp.tag && (
+                  <span class="text-xs font-black text-amber-700 bg-amber-100/90 px-2.5 py-0.5 rounded-md">
+                    {exp.tag}
+                  </span>
+                )}
+              </div>
+              <h6 class="text-base font-black text-slate-900 mb-2">
+                {exp.title}
+              </h6>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                {exp.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Note Article Link -->
+      <div class="mt-10 pt-8 border-t border-slate-100">
+        <a
+          href={sparkNote.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 p-4 sm:p-5 lg:p-6 rounded-2xl bg-amber-50/70 border border-amber-200/80"
+        >
+          <div class="flex items-start sm:items-center gap-3.5 sm:gap-4 min-w-0 flex-1">
+            <!-- note badge -->
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white border border-amber-200/90 shadow-xs flex items-center justify-center shrink-0 p-1 sm:p-2.5 mt-0.5 sm:mt-0">
+              <img src={noteIcon.src} alt="Note" class="w-full h-full object-contain" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1 sm:mb-0">
+                <span class="text-[10px] font-black tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded">
+                  公式note記事
+                </span>
+                <span class="text-xs text-slate-500 font-medium hidden sm:inline">
+                  {sparkNote.caption}
+                </span>
+              </div>
+              <div class="text-sm sm:text-base lg:text-lg font-bold text-slate-900 leading-snug line-clamp-2 sm:line-clamp-1 mt-0.5 sm:mt-1">
+                {sparkNote.title}
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between sm:justify-end gap-2 text-xs sm:text-sm font-bold text-amber-800 shrink-0 pt-3 sm:pt-0 border-t border-amber-200/60 sm:border-0">
+            <div class="inline-flex items-center gap-1.5 ml-auto sm:ml-0">
+              <span>詳しくはこちら</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- NEXUS DIALOGUE -->
+    <div class="reveal bg-white border border-sky-200/90 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-md shadow-sky-950/5 relative overflow-hidden">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-slate-100">
+        <div class="flex items-center gap-4">
+          <!-- Clean SVG Icon (Dialogue / Chat) -->
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-linear-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20 shrink-0">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
+              NEXUS DIALOGUE
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-8 space-y-4">
+        <h4 class="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 leading-snug">
+          対話から、<span class="text-transparent bg-clip-text bg-linear-to-r from-sky-600 to-blue-600">次の一歩</span>を生み出す。
+        </h4>
+        <div class="text-slate-600 text-base sm:text-lg leading-relaxed space-y-3 font-medium">
+          <p>
+            NEXUS DIALOGUEは、社会の第一線で挑戦する人と、学生・若手世代が直接言葉を交わすトーク・講演事業です。
+          </p>
+          <p>
+            企業、行政、スポーツ、スタートアップ、地域、キャリアなど、さまざまな分野で活躍するゲストを迎え、その人自身の経験や価値観、挑戦の背景について掘り下げます。
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
+        <div class="bg-linear-to-br from-sky-50/80 via-blue-50/40 to-white border border-sky-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <h5 class="text-lg font-black text-sky-950 mb-3">
+              一方通行ではない、“DIALOGUE”
+            </h5>
+            <div class="my-4 w-full h-px rounded-full bg-sky-200/80"></div>
+            <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+              NEXUS DIALOGUEが大切にしているのは、講演者から参加者へ一方的に情報を届けることではありません。<br /><br />
+              ゲストと学生、参加者同士が問いを交わし、それぞれの考え方や価値観に触れることで、新しい視点を生み出す「対話」の場をつくります。<br /><br />
+              少人数でのトークセッションや質疑応答、交流の時間なども取り入れながら、参加者が自分自身の進路や挑戦について考えるきっかけを提供します。
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <h5 class="text-lg font-black text-slate-900 mb-3">
+              完成された成功談ではなく、リアルな話を届ける
+            </h5>
+            <div class="my-4 w-full h-px rounded-full bg-slate-200/80"></div>
+            <ul class="space-y-4 text-sm sm:text-base text-slate-700">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-md bg-sky-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5 shadow-xs">
+                  01
+                </span>
+                <div>
+                  <strong class="font-bold text-slate-900">「なぜその道を選んだのか」</strong>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    意思決定の原点や、常識にとらわれず挑戦を選んだ背景を深掘り。
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-md bg-sky-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5 shadow-xs">
+                  02
+                </span>
+                <div>
+                  <strong class="font-bold text-slate-900">「どんな失敗や迷いがあったのか」</strong>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    表舞台では語られない葛藤や壁、リアルな試行錯誤の軌跡に迫る。
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-md bg-sky-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5 shadow-xs">
+                  03
+                </span>
+                <div>
+                  <strong class="font-bold text-slate-900">「これから何を目指しているのか」</strong>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    現在進行形のビジョンと、これからの未来に向けた挑戦を共有。
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-8 pt-8 border-t border-slate-100">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+              <h5 class="text-lg font-black text-slate-900">
+                扱うテーマ
+              </h5>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">
+              開催地域や登壇者に合わせて、既存の枠にとらわれないテーマで対話を生み出します。
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          <div class="sm:col-span-2 lg:col-span-1 p-5 rounded-2xl bg-linear-to-br from-sky-500 to-blue-600 text-white shadow-md shadow-blue-500/15 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-black tracking-widest uppercase bg-white/20 px-2 py-0.5 rounded">
+                  CORE THEME
+                </span>
+                <span class="w-2 h-2 rounded-full bg-white"></span>
+              </div>
+              <div class="text-lg font-black tracking-tight">
+                キャリア・働き方
+              </div>
+            </div>
+            <div class="text-xs text-sky-100 font-medium mt-1 pt-3 border-t border-white/20">
+              自分自身の進路や挑戦の軸を見つめ直す
+            </div>
+          </div>
+
+          {dialogueThemes.map((theme) => (
+            <div class="p-4 sm:p-4.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between group">
+              <div>
+                <span class="text-[10px] font-bold text-slate-400 tracking-wider mb-1.5">
+                  {theme.en}
+                </span>
+                <div class="text-base font-bold text-slate-900">
+                  {theme.name}
+                </div>
+              </div>
+              <div class="text-xs text-slate-500 font-medium mt-3 pt-2.5 border-t border-slate-200/60 leading-snug">
+                {theme.note}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="my-8 pt-8 border-t border-slate-100">
+        <div class="mb-6">
+          <div class="inline-block text-xs font-black text-sky-700 uppercase tracking-wider mb-1">
+            COLLABORATION
+          </div>
+          <h5 class="text-lg sm:text-xl font-black text-slate-900">
+            地域とともにつくるDIALOGUE
+          </h5>
+          <p class="text-sm text-slate-600 mt-4 font-medium leading-relaxed">
+            単独での講演開催だけでなく、企業・自治体・大学・地域施設などとの共同開催も推進しています。<br />
+            その地域を代表する企業や挑戦者と若者が出会うことで、地域について知り、将来の選択肢を広げるきっかけをつくります。
+          </p>
+        </div>
+      </div>
+
+      <!-- Note Article Link -->
+      <div class="mt-10 pt-8 border-t border-slate-100">
+        <a
+          href={dialogueNote.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 p-4 sm:p-5 lg:p-6 rounded-2xl bg-sky-50/70 border border-sky-200/80"
+        >
+          <div class="flex items-start sm:items-center gap-3.5 sm:gap-4 min-w-0 flex-1">
+            <!-- note badge -->
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white border border-sky-200/90 shadow-xs flex items-center justify-center shrink-0 p-1 sm:p-2.5 mt-0.5 sm:mt-0">
+              <img src={noteIcon.src} alt="Note" class="w-full h-full object-contain" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1 sm:mb-0">
+                <span class="text-[10px] font-black tracking-wider text-sky-800 bg-sky-200/70 px-2 py-0.5 rounded">
+                  公式note記事
+                </span>
+                <span class="text-xs text-slate-500 font-medium hidden sm:inline">
+                  {dialogueNote.caption}
+                </span>
+              </div>
+              <div class="text-sm sm:text-base lg:text-lg font-bold text-slate-900 leading-snug line-clamp-2 sm:line-clamp-1 mt-0.5 sm:mt-1">
+                {dialogueNote.title}
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between sm:justify-end gap-2 text-xs sm:text-sm font-bold text-sky-800 shrink-0 pt-3 sm:pt-0 border-t border-sky-200/60 sm:border-0">
+            <div class="inline-flex items-center gap-1.5 ml-auto sm:ml-0">
+              <span>詳しくはこちら</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
