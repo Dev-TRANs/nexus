@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title = "NEXUS LAB | 学生と企業が本気でぶつかり合う共創プラットフォーム",
-  description = "学生団体NEXUS LAB公式サイト。学生と社会をつなぎ、次世代の挑戦を加速させるプラットフォーム。2026年8月23日（日）開催「NEXUS SPARK TOKYO」情報掲載中。"
+  description = "学生団体NEXUS LAB公式サイト。学生と社会をつなぎ、次世代の挑戦を加速させるプラットフォーム。"
 } = Astro.props;
 ---
 
@@ -19,12 +19,12 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +48,6 @@ const {
     <script>
       const setupScrollAnimations = () => {
         const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-        
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -61,7 +60,6 @@ const {
           threshold: 0.12,
           rootMargin: '0px 0px -40px 0px'
         });
-
         revealElements.forEach((el) => observer.observe(el));
       };
 
