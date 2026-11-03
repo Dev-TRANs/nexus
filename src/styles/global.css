@@ -26,6 +26,15 @@
   }
 }
 
+/* Alternating section backgrounds */
+main > section:nth-of-type(odd) {
+  background-color: #f8fafc; /* bg-slate-50 */
+}
+
+main > section:nth-of-type(even) {
+  background-color: rgb(255 255 255 / 90%); /* bg-white/90 */
+}
+
 /* Custom Scrollbar Utilities */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
