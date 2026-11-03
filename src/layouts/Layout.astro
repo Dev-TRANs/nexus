@@ -4,12 +4,15 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title = "NEXUS LAB | 学生と企業が本気でぶつかり合う共創プラットフォーム",
-  description = "学生団体NEXUS LAB公式サイト。学生と社会をつなぎ、次世代の挑戦を加速させるプラットフォーム。"
+  description = "学生団体NEXUS LAB公式サイト。学生と社会をつなぎ、次世代の挑戦を加速させるプラットフォーム。",
+  image = "/nexus_logo_full.png"
 } = Astro.props;
+const ogImage = new URL(image, Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -36,11 +39,13 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="NEXUS LAB" />
+    <meta property="og:image" content={ogImage} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
   </head>
   <body class="bg-slate-50 text-slate-900 selection:bg-sky-500 selection:text-white antialiased font-sans flex flex-col min-h-screen">
     <slot />

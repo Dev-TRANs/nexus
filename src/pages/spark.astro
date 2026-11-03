@@ -1,0 +1,332 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { events, isUpcoming } from "../data/spark";
+
+Astro.response.headers.set("Cache-Control", "public, max-age=0, s-maxage=1800");
+
+const now = new Date();
+const upcoming = events.filter((e) => isUpcoming(e, now)).sort((a, b) => a.date.localeCompare(b.date));
+const past = events.filter((e) => !isUpcoming(e, now)).sort((a, b) => b.date.localeCompare(a.date));
+const next = upcoming[0];
+
+const values = [
+  {
+    no: "01",
+    title: "自分の興味から、人やテーマと出会う",
+    body: "起業経験や団体活動の実績、完成した事業アイデアは必要ありません。「何か始めたいけれど、まだ決まっていない」「企業や社会の取り組みを知りたい」という方も歓迎します。話を聞く、質問する、自分の経験を伝える、一緒に企画を考えるなど、それぞれの関わり方を大切にします。",
+  },
+  {
+    no: "02",
+    title: "現場の課題と、若手の経験が出会う",
+    body: "企業や行政が現場で向き合っている課題と、学生や若手世代の日常の経験が出会うことで、新しい問いやアイデアが生まれることがあります。課題の紹介や対話、交流を通じて、互いの考えを知り、関心が重なる相手を見つける機会をつくります。",
+  },
+  {
+    no: "03",
+    title: "当日の出会いを、その後につなげる",
+    body: "事業化や実証に加え、新しい仲間が見つかること、自分の関心が明確になること、継続して相談できる相手と出会うことも、挑戦の始まりとして捉えています。開催後の取り組みは、継続を希望する参加者・企業等と、実施体制や対応可能な範囲を確認しながら検討します。",
+  },
+];
+
+const label = "inline-block pb-1.5 border-b-2 border-amber-500";
+const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider uppercase";
+---
+
+<Layout
+  title="NEXUS SPARK | 学生・企業・地域が出会い、挑戦が動き出す共創イベント"
+  description="NEXUS SPARKは、学生・企業・スタートアップ・行政・金融機関・地域の団体が出会い、新しい挑戦につなげる共創イベント。KANSAI 2027の開催情報、参加申込、過去の開催レポート、連携相談はこちら。"
+>
+  <Header />
+  <main class="grow">
+    <!-- HERO -->
+    <section class="relative pt-28 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-slate-200/60">
+      <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/3 -right-40 w-96 h-96 bg-sky-100/60 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
+        <div class="reveal space-y-5">
+          <div class={label}><span class={labelText}>NEXUS SPARK</span></div>
+          <h1 class="text-[34px] md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.18] text-slate-900">
+            つながりから、<br />
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-amber-600 to-orange-600">新たな挑戦</span>が動き出す。
+          </h1>
+          <p class="max-w-3xl text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
+            NEXUS SPARKは、学生・企業・スタートアップ・行政・金融機関・地域の団体など、普段は異なる場所で活動する人々が出会い、新しい挑戦につながるきっかけをつくる共創イベントです。
+          </p>
+        </div>
+
+        {next && (
+          <div class="reveal bg-white border border-amber-200/90 rounded-3xl p-6 sm:p-8 shadow-md shadow-amber-950/5 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">NEXT EVENT</span>
+                <span class="text-xs text-slate-500 font-semibold">{next.dateLabel} @{next.venue}</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900">{next.name}</h2>
+              {next.theme && <p class="text-sm sm:text-base text-slate-600 font-medium">テーマ：{next.theme}</p>}
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+              {next.peatixUrl && (
+                <a href={next.peatixUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold text-sm transition-all shadow-md shadow-orange-500/20">
+                  Peatixで参加申込
+                </a>
+              )}
+              <a href="#next" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white border border-slate-200 hover:border-amber-300 text-slate-700 font-bold text-sm transition-colors">
+                開催概要を見る
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- 理念 -->
+    <section id="philosophy" class="py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl space-y-4 reveal mb-12">
+          <div class={label}><span class={labelText}>PHILOSOPHY</span></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            世代や所属、肩書きを越えて、<br class="hidden sm:inline" />経験と関心を持ち寄る場。
+          </h2>
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
+            「つながりから、新たな挑戦を生み出す。」というNEXUS LABの理念をもとに、世代や所属、業界、肩書きを越えて、互いの経験や関心を持ち寄れる場を目指しています。
+          </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {values.map((v, idx) => (
+            <div class="reveal bg-white border border-amber-200/80 rounded-3xl p-7" style={`transition-delay: ${idx * 100}ms;`}>
+              <span class="w-8 h-8 rounded-lg bg-amber-500 text-white font-black flex items-center justify-center text-xs shadow-xs">{v.no}</span>
+              <h3 class="mt-5 text-lg font-black text-slate-900 leading-snug">{v.title}</h3>
+              <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">{v.body}</p>
+            </div>
+          ))}
+        </div>
+        <p class="reveal mt-10 max-w-4xl text-slate-700 text-base sm:text-lg leading-relaxed font-bold">
+          学生の新鮮な視点、企業の知見、行政の地域理解、起業家の実行力、金融機関の事業化支援。それぞれの強みを持ち寄り、一つの組織だけでは生み出せない挑戦を関西から始めます。
+        </p>
+      </div>
+    </section>
+
+    <!-- 次回開催 -->
+    <section id="next" class="py-24 border-t border-slate-200/80 scroll-mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl space-y-4 reveal mb-12">
+          <div class={label}><span class={labelText}>NEXT EVENT</span></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">次回開催</h2>
+        </div>
+
+        {next ? (
+          <div class="space-y-8">
+            <div class="reveal bg-white border border-amber-200/90 rounded-3xl p-6 sm:p-10 shadow-md shadow-amber-950/5">
+              <h3 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">{next.name}</h3>
+              {next.category && <span class="mt-3 inline-block text-xs font-black text-amber-700 bg-amber-100/90 px-2.5 py-1 rounded-md">{next.category}</span>}
+              {next.lead && <p class="mt-5 text-lg sm:text-2xl font-black text-slate-900 leading-snug">{next.lead}</p>}
+              <div class="mt-4 space-y-3 text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
+                {(next.body ?? [next.summary]).map((para) => <p>{para}</p>)}
+              </div>
+
+              <dl class="mt-8 grid grid-cols-1 sm:grid-cols-[8rem_1fr] border-t border-slate-100 text-sm sm:text-base">
+                <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">日時</dt>
+                <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.dateLabel}{next.time && ` ${next.time}`}</dd>
+                <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">会場</dt>
+                <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.venue}</dd>
+                {next.organizer && (<>
+                  <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">主催</dt>
+                  <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.organizer}</dd>
+                </>)}
+                {next.category && (<>
+                  <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">区分</dt>
+                  <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.category}</dd>
+                </>)}
+                {next.theme && (<>
+                  <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">テーマ</dt>
+                  <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.theme}</dd>
+                </>)}
+                {next.audience && (<>
+                  <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">参加対象</dt>
+                  <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.audience}</dd>
+                </>)}
+                {next.organizer && (<>
+                  <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">主催</dt>
+                  <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.organizer}</dd>
+                </>)}
+                <dt class="pt-4 sm:py-4 font-black text-amber-700">参加申込</dt>
+                <dd class="pb-4 sm:py-4 text-slate-800 font-medium">
+                  Peatixから申し込みできます。チケット種別や参加条件をご確認のうえ、お申し込みください。一人での参加や、こうしたイベントへの初参加も歓迎します。
+                </dd>
+              </dl>
+
+              <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                {next.peatixUrl && (
+                  <a href={next.peatixUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-black text-base shadow-lg shadow-orange-500/30 transition-colors">
+                    Peatixで参加申込
+                  </a>
+                )}
+                {next.noteUrl && (
+                  <a href={next.noteUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-white border border-slate-200 hover:border-amber-300 text-slate-700 font-bold text-base transition-colors">
+                    開催への想い（note）
+                  </a>
+                )}
+              </div>
+              {next.notes && (
+                <ul class="mt-4 space-y-1 text-xs text-slate-500 font-medium">
+                  {next.notes.map((n) => <li>※{n}</li>)}
+                </ul>
+              )}
+            </div>
+
+            {next.commitment && (
+              <div class="reveal rounded-3xl p-6 sm:p-10 bg-linear-to-br from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/20">
+                <span class="text-[10px] font-black tracking-widest bg-white/20 px-2 py-0.5 rounded">THE GOAL</span>
+                <h3 class="mt-3 text-2xl sm:text-3xl font-black tracking-tight">{next.commitment.title}</h3>
+                <p class="mt-3 text-sm sm:text-base leading-relaxed text-amber-50 font-medium">{next.commitment.body}</p>
+              </div>
+            )}
+
+            {next.recommended && (
+              <div class="reveal bg-white border border-amber-200/80 rounded-3xl p-6 sm:p-10">
+                <h3 class="text-xl sm:text-2xl font-black text-slate-900">こんな方におすすめです</h3>
+                <ul class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {next.recommended.map((r) => (
+                    <li class="flex items-start gap-3 p-4 rounded-2xl bg-amber-50/60 border border-amber-100 text-sm sm:text-base text-slate-800 font-medium">
+                      <span class="mt-2 w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>{r}
+                    </li>
+                  ))}
+                </ul>
+                {next.recommendedNote && <p class="mt-5 text-sm sm:text-base font-bold text-amber-800">{next.recommendedNote}</p>}
+              </div>
+            )}
+
+            {next.timetable && (
+              <div class="reveal bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10">
+                <h3 class="text-xl sm:text-2xl font-black text-slate-900">タイムテーブル</h3>
+                <ol class="mt-6 divide-y divide-slate-100">
+                  {next.timetable.map((t) => (
+                    <li class={`py-4 flex flex-col sm:flex-row sm:gap-8 ${t.minor ? "opacity-70" : ""}`}>
+                      <time class="sm:w-36 shrink-0 text-sm font-black text-amber-700 tabular-nums">{t.time}</time>
+                      <div class="min-w-0">
+                        <div class="font-bold text-slate-900 leading-snug">{t.title}</div>
+                        {t.desc && <p class="mt-1 text-sm text-slate-600 leading-relaxed">{t.desc}</p>}
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                {next.timetableNote && <p class="mt-6 text-xs text-slate-500 font-medium">{next.timetableNote}</p>}
+              </div>
+            )}
+
+            {next.rules && (
+              <div class="reveal bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10">
+                <h3 class="text-xl sm:text-2xl font-black text-slate-900">ご参加にあたって</h3>
+                <ul class="mt-5 space-y-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+                  {next.rules.map((r) => (
+                    <li class="flex items-start gap-3"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>{r}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {(next.recommendedFor || next.notes) && (
+              <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {next.recommendedFor && (
+                  <div class="bg-linear-to-br from-amber-50/80 via-orange-50/40 to-white border border-amber-200/80 rounded-3xl p-6 sm:p-8">
+                    <h3 class="text-lg sm:text-xl font-black text-slate-900">こんな方におすすめ</h3>
+                    <ul class="mt-5 space-y-3 text-sm sm:text-base text-slate-700">
+                      {next.recommendedFor.map((r) => (
+                        <li class="flex items-start gap-3"><span class="w-2 h-2 rounded-full bg-amber-500 mt-2 shrink-0"></span><span>{r}</span></li>
+                      ))}
+                    </ul>
+                    <p class="mt-5 text-sm font-bold text-amber-800">起業経験や専門知識は必要ありません。まだ明確なアイデアがない方も参加できます。</p>
+                  </div>
+                )}
+                {next.notes && (
+                  <div class="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8">
+                    <h3 class="text-lg sm:text-xl font-black text-slate-900">ご参加にあたって</h3>
+                    <ul class="mt-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                      {next.notes.map((n) => (
+                        <li class="flex items-start gap-3"><span class="text-slate-400 shrink-0">※</span><span>{n}</span></li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div class="reveal bg-white border border-slate-200 rounded-3xl p-8 text-slate-600 font-medium">
+            次回の開催情報は、決まり次第こちらでお知らせします。
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- 開催履歴 -->
+    <section id="history" class="py-24 border-t border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl space-y-4 reveal mb-12">
+          <div class={label}><span class={labelText}>HISTORY</span></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">これまでの開催</h2>
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
+            各地域での経験を今後の企画・運営に活かし、地域の特色や課題に応じたSPARKへとつなげていきます。
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {past.map((e) => (
+            <article class="reveal bg-white border border-slate-200/90 rounded-3xl p-7 flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-black text-amber-700 bg-amber-100/90 px-2.5 py-0.5 rounded-md">{e.dateLabel}</span>
+                <h3 class="mt-4 text-xl font-black text-slate-900">{e.name}</h3>
+                <p class="mt-1 text-xs text-slate-500 font-semibold">@{e.venue}</p>
+                <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">{e.summary}</p>
+              </div>
+              {e.noteUrl && (
+                <a href={e.noteUrl} target="_blank" rel="noopener noreferrer" class="mt-6 pt-4 border-t border-slate-100 inline-flex items-center gap-2 text-sm font-bold text-amber-700 hover:text-amber-800">
+                  開催レポートを読む
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 連携相談 -->
+    <section id="partner" class="py-24 border-t border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl space-y-4 reveal">
+          <div class={label}><span class={labelText}>PARTNERSHIP</span></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">連携のご相談</h2>
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
+            企業・自治体・大学・学生団体・地域団体の皆さまからの連携相談も受け付けています。課題の提示、参加者との対話、企画への助言、広報協力、協賛、関連イベントの開催など、それぞれの目的や強み、対応可能な範囲に応じた関わり方をご相談いただけます。
+          </p>
+        </div>
+        <div class="mt-10 reveal flex flex-col sm:flex-row gap-3">
+          <a href="/#contact" class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-black text-base shadow-lg shadow-sky-500/30 transition-colors">
+            お問い合わせはこちら
+          </a>
+          <a href="/#documents" class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-white border border-slate-200 hover:border-sky-300 text-slate-700 font-bold text-base transition-colors">
+            提案書をダウンロード
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <!-- スマホ用 追従申込バー -->
+  {next?.peatixUrl && (
+    <>
+      <div class="h-20 md:hidden" aria-hidden="true"></div>
+      <div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/90 backdrop-blur-md border-t border-slate-200 px-4 py-3 flex items-center justify-between gap-3" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));">
+        <div class="min-w-0">
+          <div class="text-[11px] font-black text-amber-700">{next.dateLabel}</div>
+          <div class="text-sm font-bold text-slate-900 truncate">{next.name}</div>
+        </div>
+        <a href={next.peatixUrl} target="_blank" rel="noopener noreferrer" class="shrink-0 px-5 py-3 rounded-xl bg-linear-to-r from-amber-500 to-orange-500 text-white font-bold text-sm shadow-md shadow-orange-500/20">
+          参加申込
+        </a>
+      </div>
+    </>
+  )}
+</Layout>
