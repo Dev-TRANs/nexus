@@ -18,20 +18,19 @@ export interface SparkEvent {
   venue: string;
   theme?: string;
   audience?: string;
-  peatixUrl?: string;
-  noteUrl?: string; // 開催レポート等
-  summary: string;
-  category?: string; // 区分（例：サイドイベント）
   organizer?: string;
-  lead?: string; // キャッチコピー
-  body?: string[]; // 本文（段落）
-  commitment?: { title: string; body: string };
+  category?: string; // 区分
+  peatixUrl?: string;
+  noteUrl?: string; // 開催への想い・開催レポート等
+  announcement?: string; // 次回開催中のみ表示する告知文（過去になると summary を表示）
+  summary: string;
+  extra?: string; // 補足（GSE2026 など）
   recommended?: string[];
   recommendedNote?: string;
   timetable?: TimetableItem[];
   timetableNote?: string;
-  rules?: string[]; // ご参加にあたって
   notes?: string[]; // チケット等の注記
+  rules?: string[]; // ご参加にあたって
 }
 
 export const events: SparkEvent[] = [
@@ -42,24 +41,18 @@ export const events: SparkEvent[] = [
     dateLabel: "2027.02.14 SUN",
     time: "受付 12:00／開演 13:00／終了予定 19:00",
     venue: "GROWTH京都河原町",
-    theme: "関西から、日本全国へ。",
-    audience: "学生・企業・起業家・行政・金融機関など",
-    category: "Global Startup EXPO 2026（GSE2026）サイドイベント",
+    theme: "関西から日本全国へ！",
+    audience: "高校生・大学生・若手社会人・企業・起業家・行政・金融機関など",
     organizer: "学生団体NEXUS LAB",
+    category: "Global Startup EXPO 2026（GSE2026）サイドイベント",
     peatixUrl: "https://peatix.com/event/5204212",
     noteUrl: "https://note.com/nexusspark/n/nec08aeba3c9d",
+    announcement:
+      "次回は、2027年2月14日、GROWTH京都河原町で「NEXUS SPARK KANSAI 2027」の開催を予定しています。「関西から日本全国へ！」をテーマに、高校生・大学生・若手社会人・企業・起業家・行政・金融機関など、多様な参加者が集まる場をつくります。企業・行政による課題紹介や、関心のあるテーマについての対話、自由な交流・相談などを通じて、関西で生まれる出会いを、その先の挑戦につなげることを目指しています。登壇者やプログラム、参加条件などの最新情報は、決まり次第お知らせします。",
     summary:
-      "学生・企業・起業家・行政・金融機関など、多様な立場の参加者が混成チームを組み、地域や企業が抱える課題と向き合う共創イベントです。",
-    lead: "「面白かった」で終わらせない。「アイデアが生まれた」だけでも終わらせない。",
-    body: [
-      "NEXUS SPARK KANSAIは、学生・企業・起業家・行政・金融機関など、多様な立場の参加者が混成チームを組み、地域や企業が抱える課題と向き合う共創イベントです。テーマは「関西から、日本全国へ。」",
-      "所属や年齢、業界の枠を越えて対話し、課題の背景を深掘りしながら、アイデアを具体的な企画へと発展させます。",
+      "企業・行政による課題紹介や、関心のあるテーマについての対話、自由な交流・相談などを通じて、関西で生まれる出会いを、その先の挑戦につなげることを目指しています。",
+    extra:
       "本イベントは、Global Startup EXPO 2026（GSE2026）のサイドイベントとして正式に承認されています。GSE2026を通じて生まれる新たな接点や挑戦の機運を、関西における具体的な共創・実証・事業化へつなげます。",
-    ],
-    commitment: {
-      title: "90-DAY COMMITMENT",
-      body: "最終発表をゴールにするのではなく、イベント終了時には、次回協議の日程、担当窓口、実行する内容などを整理します。イベント後90日間の具体的な行動や、実証・事業化につながる最初の一歩を目指します。",
-    },
     recommended: [
       "何かに挑戦したいが、最初の一歩を探している学生",
       "企業や行政、起業家と一緒に地域・社会課題を考えたい方",
@@ -70,18 +63,20 @@ export const events: SparkEvent[] = [
     ],
     recommendedNote: "起業経験や専門知識は必要ありません。まだ明確なアイデアがない方も参加できます。",
     timetable: [
-      { time: "12:00〜13:00", title: "受付・SPARK MEETUP", desc: "テーマカードを使った交流と仲間探しを行います。初参加の方や、一人で参加される方も自然に会話へ入れる時間です。" },
-      { time: "13:00〜13:15", title: "オープニング", desc: "イベントの目的、当日の進め方、目指す成果について共有します。" },
-      { time: "13:15〜13:35", title: "INSPIRATION SESSION", desc: "関西における地域共創や新規事業、社会課題への挑戦について、ゲストから視点や実践事例を共有いただきます。" },
-      { time: "13:35〜14:10", title: "OPEN CHALLENGE", desc: "企業・行政・地域・起業家等から、参加者とともに考えたい課題やテーマを提示します。" },
-      { time: "14:10〜15:30", title: "SPARK DISCOVERY", desc: "混成チームで課題の背景を掘り下げ、誰のどのような課題を解決するのかを整理します。" },
-      { time: "15:30〜15:45", title: "休憩", minor: true },
-      { time: "15:45〜17:15", title: "CO-CREATION LAB", desc: "企業、起業家、行政、金融機関等との対話を通じて、アイデアの実現可能性や連携方法を具体化します。" },
-      { time: "17:15〜18:00", title: "SPARK PITCH", desc: "各チームが共創アイデアを発表し、ゲストや参加者からコメントを受けます。" },
-      { time: "18:00〜18:30", title: "90-DAY COMMITMENT", desc: "発表で終わらせず、次回協議、担当窓口、検証内容など、イベント後90日間のアクションを整理します。" },
-      { time: "18:30〜19:00", title: "クロージング・交流", desc: "参加者同士の交流、連携先との確認、集合写真撮影等を予定しています。" },
+      { time: "12:00〜12:50", title: "SPARK MEETUP｜受付・交流", desc: "テーマカードを使い、興味や関心を共有しながら交流します。" },
+      { time: "12:50〜13:00", title: "着席案内・開演準備", desc: "会場や参加方法をご案内します。" },
+      { time: "13:00〜13:10", title: "オープニング", desc: "企画の趣旨と当日の流れを共有します。" },
+      { time: "13:10〜13:20", title: "協賛企業・関係者紹介", desc: "参画する企業・団体と、それぞれの役割を紹介します。" },
+      { time: "13:20〜14:05", title: "OPEN CHALLENGE｜企業・地域からの問いの共有", desc: "現場の課題や、一緒に考えたいテーマを紹介します。" },
+      { time: "14:05〜14:20", title: "テーマ選択・チームづくり", desc: "関心のあるテーマを選び、異なる立場の参加者とチームをつくります。" },
+      { time: "14:20〜16:00", title: "SPARK DISCOVERY｜課題の深掘り・アイデア出し", desc: "経験や疑問を持ち寄り、課題の背景や解決の可能性を考えます。" },
+      { time: "16:00〜16:20", title: "休憩・自由交流", minor: true },
+      { time: "16:20〜17:40", title: "CO-CREATION LAB｜アイデアの可能性を考える", desc: "メンターとの対話を通じて視点を広げ、小さく試せることを考えます。" },
+      { time: "17:40〜18:20", title: "SPARK CROSSOVER｜自由交流・相談", desc: "ほかの参加者と話す、企業に相談する、チームで考え続けるなど、過ごし方を選べます。" },
+      { time: "18:20〜18:50", title: "NEXT SPARK｜振り返り・次の一歩の相談", desc: "一日の気づきを振り返り、希望者は今後の相談や取り組みについて話します。" },
+      { time: "18:50〜19:00", title: "クロージング・集合写真", desc: "今後の案内と記念撮影を行います。" },
     ],
-    timetableNote: "※プログラム、時間、登壇者および実施内容は、連携状況等に応じて変更する場合があります。",
+    timetableNote: "※プログラム・時間・内容は、調整状況により変更する場合があります。",
     notes: [
       "学生チケットをご購入の方には、当日学生証をご提示いただく場合があります。",
       "チケット種別および販売枚数は変更する場合があります。",
@@ -101,8 +96,9 @@ export const events: SparkEvent[] = [
     date: "2026-08-23",
     dateLabel: "2026.08.23 SUN",
     venue: "GROWTH文京飯田橋",
+    noteUrl: "https://note.com/nexusspark/n/n565cd5aabe97",
     summary:
-      "学生や企業、スタートアップなどが集まり、立場を越えて交流する機会となりました。",
+      "2026年8月23日には、GROWTH文京飯田橋で「NEXUS SPARK TOKYO」を開催しました。学生や企業、スタートアップなどが集まり、立場を越えて交流する機会となりました。当日の様子や開催を通じて得られた気づきは、公式noteの開催レポートで紹介しています。東京での経験を今後の企画・運営に活かし、各地域の特色や課題に応じたSPARKへとつなげていきます。",
   },
 ];
 

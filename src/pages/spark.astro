@@ -14,18 +14,15 @@ const next = upcoming[0];
 const values = [
   {
     no: "01",
-    title: "自分の興味から、人やテーマと出会う",
-    body: "起業経験や団体活動の実績、完成した事業アイデアは必要ありません。「何か始めたいけれど、まだ決まっていない」「企業や社会の取り組みを知りたい」という方も歓迎します。話を聞く、質問する、自分の経験を伝える、一緒に企画を考えるなど、それぞれの関わり方を大切にします。",
+    body: "大切にしているのは、参加者一人ひとりが、自分の興味から人やテーマと出会えることです。起業経験や団体活動の実績、完成した事業アイデアは必要ありません。「何か始めたいけれど、まだ決まっていない」「企業や社会の取り組みを知りたい」という方も歓迎します。話を聞く、質問する、自分の経験を伝える、一緒に企画を考えるなど、それぞれの関わり方を大切にします。",
   },
   {
     no: "02",
-    title: "現場の課題と、若手の経験が出会う",
     body: "企業や行政が現場で向き合っている課題と、学生や若手世代の日常の経験が出会うことで、新しい問いやアイデアが生まれることがあります。課題の紹介や対話、交流を通じて、互いの考えを知り、関心が重なる相手を見つける機会をつくります。",
   },
   {
     no: "03",
-    title: "当日の出会いを、その後につなげる",
-    body: "事業化や実証に加え、新しい仲間が見つかること、自分の関心が明確になること、継続して相談できる相手と出会うことも、挑戦の始まりとして捉えています。開催後の取り組みは、継続を希望する参加者・企業等と、実施体制や対応可能な範囲を確認しながら検討します。",
+    body: "NEXUS SPARKは、イベント当日の出会いを、その後の対話や行動へつなげることを大切にしています。事業化や実証に加え、新しい仲間が見つかること、自分の関心が明確になること、継続して相談できる相手と出会うことも、挑戦の始まりとして捉えています。開催後の取り組みは、継続を希望する参加者・企業等と、実施体制や対応可能な範囲を確認しながら検討します。",
   },
 ];
 
@@ -86,7 +83,7 @@ const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider
         <div class="max-w-4xl space-y-4 reveal mb-12">
           <div class={label}><span class={labelText}>PHILOSOPHY</span></div>
           <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-            世代や所属、肩書きを越えて、<br class="hidden sm:inline" />経験と関心を持ち寄る場。
+            NEXUS SPARKが大切にしていること
           </h2>
           <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
             「つながりから、新たな挑戦を生み出す。」というNEXUS LABの理念をもとに、世代や所属、業界、肩書きを越えて、互いの経験や関心を持ち寄れる場を目指しています。
@@ -96,8 +93,7 @@ const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider
           {values.map((v, idx) => (
             <div class="reveal bg-white border border-amber-200/80 rounded-3xl p-7" style={`transition-delay: ${idx * 100}ms;`}>
               <span class="w-8 h-8 rounded-lg bg-amber-500 text-white font-black flex items-center justify-center text-xs shadow-xs">{v.no}</span>
-              <h3 class="mt-5 text-lg font-black text-slate-900 leading-snug">{v.title}</h3>
-              <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">{v.body}</p>
+              <p class="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed">{v.body}</p>
             </div>
           ))}
         </div>
@@ -119,10 +115,9 @@ const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider
           <div class="space-y-8">
             <div class="reveal bg-white border border-amber-200/90 rounded-3xl p-6 sm:p-10 shadow-md shadow-amber-950/5">
               <h3 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">{next.name}</h3>
-              {next.category && <span class="mt-3 inline-block text-xs font-black text-amber-700 bg-amber-100/90 px-2.5 py-1 rounded-md">{next.category}</span>}
-              {next.lead && <p class="mt-5 text-lg sm:text-2xl font-black text-slate-900 leading-snug">{next.lead}</p>}
               <div class="mt-4 space-y-3 text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
-                {(next.body ?? [next.summary]).map((para) => <p>{para}</p>)}
+                <p>{next.announcement ?? next.summary}</p>
+                {next.extra && <p>{next.extra}</p>}
               </div>
 
               <dl class="mt-8 grid grid-cols-1 sm:grid-cols-[8rem_1fr] border-t border-slate-100 text-sm sm:text-base">
@@ -146,13 +141,9 @@ const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider
                   <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">参加対象</dt>
                   <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.audience}</dd>
                 </>)}
-                {next.organizer && (<>
-                  <dt class="pt-4 sm:py-4 font-black text-amber-700 sm:border-b sm:border-slate-100">主催</dt>
-                  <dd class="pb-4 sm:py-4 text-slate-800 font-medium border-b border-slate-100">{next.organizer}</dd>
-                </>)}
                 <dt class="pt-4 sm:py-4 font-black text-amber-700">参加申込</dt>
                 <dd class="pb-4 sm:py-4 text-slate-800 font-medium">
-                  Peatixから申し込みできます。チケット種別や参加条件をご確認のうえ、お申し込みください。一人での参加や、こうしたイベントへの初参加も歓迎します。
+                  参加申込にはPeatixを利用します。本ページに掲載する申込リンクから、開催概要や参加条件をご確認のうえ、お申し込みください。一人での参加や、こうしたイベントへの初参加も歓迎します。
                 </dd>
               </dl>
 
@@ -174,14 +165,6 @@ const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider
                 </ul>
               )}
             </div>
-
-            {next.commitment && (
-              <div class="reveal rounded-3xl p-6 sm:p-10 bg-linear-to-br from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/20">
-                <span class="text-[10px] font-black tracking-widest bg-white/20 px-2 py-0.5 rounded">THE GOAL</span>
-                <h3 class="mt-3 text-2xl sm:text-3xl font-black tracking-tight">{next.commitment.title}</h3>
-                <p class="mt-3 text-sm sm:text-base leading-relaxed text-amber-50 font-medium">{next.commitment.body}</p>
-              </div>
-            )}
 
             {next.recommended && (
               <div class="reveal bg-white border border-amber-200/80 rounded-3xl p-6 sm:p-10">
@@ -225,32 +208,6 @@ const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider
                 </ul>
               </div>
             )}
-
-            {(next.recommendedFor || next.notes) && (
-              <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {next.recommendedFor && (
-                  <div class="bg-linear-to-br from-amber-50/80 via-orange-50/40 to-white border border-amber-200/80 rounded-3xl p-6 sm:p-8">
-                    <h3 class="text-lg sm:text-xl font-black text-slate-900">こんな方におすすめ</h3>
-                    <ul class="mt-5 space-y-3 text-sm sm:text-base text-slate-700">
-                      {next.recommendedFor.map((r) => (
-                        <li class="flex items-start gap-3"><span class="w-2 h-2 rounded-full bg-amber-500 mt-2 shrink-0"></span><span>{r}</span></li>
-                      ))}
-                    </ul>
-                    <p class="mt-5 text-sm font-bold text-amber-800">起業経験や専門知識は必要ありません。まだ明確なアイデアがない方も参加できます。</p>
-                  </div>
-                )}
-                {next.notes && (
-                  <div class="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8">
-                    <h3 class="text-lg sm:text-xl font-black text-slate-900">ご参加にあたって</h3>
-                    <ul class="mt-5 space-y-3 text-sm text-slate-600 leading-relaxed">
-                      {next.notes.map((n) => (
-                        <li class="flex items-start gap-3"><span class="text-slate-400 shrink-0">※</span><span>{n}</span></li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            )}
           </div>
         ) : (
           <div class="reveal bg-white border border-slate-200 rounded-3xl p-8 text-slate-600 font-medium">
@@ -266,9 +223,6 @@ const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider
         <div class="max-w-4xl space-y-4 reveal mb-12">
           <div class={label}><span class={labelText}>HISTORY</span></div>
           <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">これまでの開催</h2>
-          <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
-            各地域での経験を今後の企画・運営に活かし、地域の特色や課題に応じたSPARKへとつなげていきます。
-          </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {past.map((e) => (
@@ -298,7 +252,7 @@ const labelText = "text-base sm:text-lg font-black text-amber-600 tracking-wider
           <div class={label}><span class={labelText}>PARTNERSHIP</span></div>
           <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">連携のご相談</h2>
           <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
-            企業・自治体・大学・学生団体・地域団体の皆さまからの連携相談も受け付けています。課題の提示、参加者との対話、企画への助言、広報協力、協賛、関連イベントの開催など、それぞれの目的や強み、対応可能な範囲に応じた関わり方をご相談いただけます。
+            企業・自治体・大学・学生団体・地域団体の皆さまからの連携相談も受け付けています。課題の提示、参加者との対話、企画への助言、広報協力、協賛、関連イベントの開催など、それぞれの目的や強み、対応可能な範囲に応じた関わり方をご相談いただけます。参加や連携に関するお問い合わせは、NEXUS LAB公式サイトのお問い合わせ窓口までお寄せください。
           </p>
         </div>
         <div class="mt-10 reveal flex flex-col sm:flex-row gap-3">
