@@ -67,6 +67,20 @@ NEXUS LABには、大学や分野を越えて、さまざまな興味や想い�
 出会った人とのつながりや、一緒につくる時間を大切に。自分自身も楽しみながら、NEXUS LABで新しいことに挑戦していきます！`,
     imageUrl: "/team/mikuno_hirao.jpg",
   },
+  {
+    name: "真崎岳",
+    role: "副代表",
+    message: `「つながりから、新たな挑戦を生み出す。」
+学生団体 NEXUS LAB 副代表の真崎 岳です。
+
+私は、これまでさまざまな活動に取り組む中で、出会いの機会や情報との接点が少ないという苦しみの中で今まで活動してきました。
+しかしながら、ありがたいことに最近は素晴らしい縁に恵まれています。
+
+現状の学生の中にも「挑戦したい」という想いを持っていて一歩を踏み出せない学生が多く見られます。また、接点を得て学生団体に入ったとしても自分が望んでいたこととのギャップで諦めると言った人も多く見られます。
+
+そんな過去の自分と同じ苦しみを持つ人たちを減らすために今、自分がもてる全てを用いて企業や挑戦者どうしの繋がりを提供します。`,
+    imageUrl: "/team/gaku_masaki.jpg",
+  },
 ];
 ---
 
@@ -84,7 +98,7 @@ NEXUS LABには、大学や分野を越えて、さまざまな興味や想い�
     </div>
 
     <!-- Members Grid -->
-    {members.slice(0, 2).map((member, idx) => (
+    {members.map((member, idx) => (
       <div
         class="bg-white border border-slate-300 rounded-3xl p-7 shadow-xs flex flex-col justify-between reveal mb-6 sm:mb-8"
         style={`transition-delay: ${idx * 100}ms;`}
@@ -99,7 +113,7 @@ NEXUS LABには、大学や分野を越えて、さまざまな興味や想い�
               </div>
             </div>
           </div>
-          <div class="flex-2">
+          <div class="flex-2 content-center">
             <div class="rounded-2xl bg-slate-50 border border-slate-200 p-4.5 sm:p-6 max-h-140 overflow-y-auto">
               <p class="text-slate-700 whitespace-pre-line leading-relaxed text-[15px] sm:text-base">{member.message}</p>
             </div>
