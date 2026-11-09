@@ -105,3 +105,4 @@ export const events: SparkEvent[] = [
 // 開催日の終わり(JST 23:59:59)を過ぎたら「過去」扱い
 export const isUpcoming = (e: SparkEvent, now = new Date()) =>
   new Date(`${e.date}T23:59:59+09:00`).getTime() >= now.getTime();
+
