@@ -45,7 +45,7 @@ export const events: SparkEvent[] = [
     audience: "高校生・大学生・若手社会人・企業・起業家・行政・金融機関など",
     organizer: "学生団体NEXUS LAB",
     category: "Global Startup EXPO 2026（GSE2026）サイドイベント",
-    peatixUrl: "https://peatix.com/event/5204212",
+    peatixUrl: "https://peatix.com/event/5264919",
     noteUrl: "https://note.com/nexusspark/n/nec08aeba3c9d",
     announcement:
       "次回は、2027年2月14日、GROWTH京都河原町で「NEXUS SPARK KANSAI 2027」の開催を予定しています。「関西から日本全国へ！」をテーマに、高校生・大学生・若手社会人・企業・起業家・行政・金融機関など、多様な参加者が集まる場をつくります。企業・行政による課題紹介や、関心のあるテーマについての対話、自由な交流・相談などを通じて、関西で生まれる出会いを、その先の挑戦につなげることを目指しています。登壇者やプログラム、参加条件などの最新情報は、決まり次第お知らせします。",
