@@ -39,7 +39,7 @@ export const events: SparkEvent[] = [
     name: "NEXUS SPARK KANSAI 2027",
     date: "2027-02-14",
     dateLabel: "2027.02.14 SUN",
-    time: "受付 12:00／開演 13:00／終了予定 19:00",
+    time: "受付 13:00／開演 14:00／終了予定 20:00",
     venue: "GROWTH京都河原町",
     theme: "関西から日本全国へ！",
     audience: "高校生・大学生・若手社会人・企業・起業家・行政・金融機関など",
