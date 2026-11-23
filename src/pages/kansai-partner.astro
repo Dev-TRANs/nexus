@@ -1,0 +1,477 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+// 共有URL限定の静的ページ。社名の差し替えはクライアント側（?company=）で行う。
+export const prerender = true;
+
+const CONTACT_EMAIL = "owan.nexusspark@gmail.com";
+const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("【NEXUS SPARK KANSAI】パートナー参画のご相談")}`;
+
+const badges = [
+  { label: "公的認定", text: "Global Startup EXPO 2026 公式サイドイベント認定" },
+  { label: "開催会場", text: "GROWTH京都河原町（京都市下京区）" },
+  { label: "開催規模（予定）", text: "学生50名（高校生・大学生・大学院生等）× 社会人50名（計100名予定）" },
+];
+
+const features = [
+  {
+    no: "特徴01",
+    title: "「発表」をゴールにしない対話重視の設計",
+    body: "形式的なプレゼン大会（審査会）をあえて設けず、すべての時間を「課題の本質的な深掘り」と「メンターとの壁打ち」に集中させています。",
+  },
+  {
+    no: "特徴02",
+    title: "スポット参加（80分〜）から可能な柔軟設計",
+    body: "現場社員様や決裁者様のご負担を最小限に抑えるため、メインワークの時間帯（17:20〜18:40）のみのご参加も歓迎しています。",
+  },
+  {
+    no: "特徴03",
+    title: "イベント後の関わりは完全任意・義務なし",
+    body: "継続的な共創プロジェクトへの発展などは、双方の希望が一致した場合のみの任意設計です。単発の共創・次世代育成機会として気軽にご活用いただけます。",
+  },
+];
+
+const tabs = [
+  {
+    id: "newbiz",
+    short: "新規事業・CVC部門様",
+    title: "新規事業・CVC・オープンイノベーション部門様",
+    items: [
+      { t: "Z世代・若年層のリアルなインサイト検証", d: "自社の新規事業テーマや仮説を「逆ピッチ」で提示し、当事者である学生・若手社会人の生々しい反応やアイデアを直接獲得できます。" },
+      { t: "課題解決に意欲的な次世代・越境人材とのネットワーク", d: "社会課題や事業開発に関心の高い学生（50名予定）や、多様な業界から集まる社会人（50名予定）とフラットに議論できる場を構築できます。" },
+      { t: "新規事業の種探し・壁打ち", d: "メンターとして議論に入ることで、既存事業の枠にとらわれない発想の刺激を得られます。" },
+    ],
+  },
+  {
+    id: "region",
+    short: "地域共創・広報・CSR部門様",
+    title: "地域共創・広報・CSR部門様",
+    items: [
+      { t: "国際イベント連動・産学官連携の実績づくり", d: "Global Startup EXPO 2026公式サイドイベントという枠組みの中で、関西圏の次世代育成・地域活性化への貢献実績を作れます。" },
+      { t: "地域課題に対する若者視点の解決策創出", d: "まちづくりや地域活性化に関するテーマを投げかけることで、若者が本当に求める地域のあり方を共に描けます。" },
+      { t: "企業ブランドの好意度向上", d: "学生と真摯に向き合う姿勢そのものが、次世代層や参加社会人に対する自然な企業理解・ブランド好意度向上に繋がります。" },
+    ],
+  },
+  {
+    id: "hr",
+    short: "人事・人材育成部門様",
+    title: "人事・人材育成・組織開発部門様",
+    items: [
+      { t: "自社社員様の「越境学習・ファシリテーション実践」の場", d: "社員様がメンターとして多様な世代・バックグラウンドの参加者に助言を行うことで、自社の常識を相対化し、対話力や視座を高める実践的な育成機会になります。" },
+      { t: "Z世代の価値観・キャリア観のリアルな理解", d: "評価や選考の場ではないフラットな共創ワークを通じて、次世代がどのような社会課題に関心を持ち、何を基準に動くのかというリアルな価値観に触れることができます。" },
+      { t: "安心の運営ルール", d: "本イベントは営業、採用、サービス勧誘のみを目的とする行為をご遠慮いただいておりますので、人事部門様にも「純粋な次世代育成・越境学習プログラム」として安心してご参画いただけます。" },
+    ],
+  },
+];
+
+const FREE_SEATS = "原則1社2名まで無料ご招待（メンター参加・課題提供の合計。増減は応相談）";
+
+const plans = [
+  { name: "ゴールド", price: "30万円", perks: "開会時ご挨拶枠（3分）／逆ピッチ優先枠／Web・会場メインロゴ掲出（大）／パンフレット・ノベルティ配布／メンター参加枠（無料招待2名に追加・3〜4名／応相談）" },
+  { name: "シルバー", price: "10万円", perks: "Web・会場ロゴ掲出（中）／関係者紹介での社名アナウンス／パンフレット・ノベルティ配布／メンター参加枠（無料招待2名に追加／応相談）" },
+  { name: "ブロンズ", price: "5万円", perks: "Web・会場ロゴ掲出（小）／関係者紹介での社名アナウンス／メンター参加枠（無料招待2名に追加／応相談）" },
+  { name: "サポーター", price: "3万円", perks: "Webサイト・当日配布資料への企業名テキスト掲載／メンター参加枠（無料招待2名に追加／応相談）" },
+];
+
+const timetable = [
+  { time: "13:00〜", title: "SPARK MEETUP", desc: "開場・受付・参加者同士のアイスブレイク交流" },
+  { time: "14:00〜", title: "オープニング", desc: "開会宣言・イベント趣旨説明" },
+  { time: "14:10〜", title: "協賛企業・関係者紹介", desc: "【協賛企業様】社名ご紹介・ご挨拶", hi: true },
+  { time: "14:20〜", title: "SPARK TALK", desc: "対話形式のクロストーク（※登壇者は決まり次第お知らせいたします）" },
+  { time: "15:20〜", title: "逆ピッチ（課題提示）", desc: "【課題提供企業様】現場のリアルな課題・テーマを提示", hi: true },
+  { time: "16:05〜", title: "テーマ選択・チーム編成", desc: "学生・社会人の混成チーム編成・休憩" },
+  { time: "16:20〜", title: "SPARK DISCOVERY", desc: "課題の構造化・現状分析ワーク" },
+  { time: "17:20〜", title: "CO-CREATION LAB", desc: "【メンター企業様】各チームを巡回し、実践的な助言・壁打ち（80分）", hi: true },
+  { time: "18:40〜", title: "SPARK CROSSOVER", desc: "チーム間の知見共有・対話セッション（※全体プレゼン発表は行いません）" },
+  { time: "19:20〜", title: "NEXT SPARK", desc: "振り返り・任意でのネットワーキング" },
+  { time: "19:50〜", title: "クロージング・集合写真", desc: "閉会（20:00終了・21:00完全撤収）" },
+];
+
+const summaryText = `【企画概要】共創イベント「NEXUS SPARK KANSAI」への参画検討について
+
+■ イベント概要
+・名称：NEXUS SPARK KANSAI（テーマ：「関西から、日本全国へ。」）
+・日時：2027年2月14日（日）14:00〜20:00（受付13:00〜）
+・会場：GROWTH京都河原町（京都市下京区四条通河原町東入真町68番地 京都河原町ガーデン8階）
+・規模（予定）：計100名予定（学生50名［高校生・大学生・大学院生等］× 社会人50名）
+・位置づけ：Global Startup EXPO 2026 公式サイドイベント
+・主催：学生団体 NEXUS LAB（代表：大湾 啓正／京都外国語大学）
+
+■ 当社としての参画メニュー・費用
+1. メンター参加：無料（17:20〜18:40の80分間のみスポット参加可）
+   混成チームの議論に助言を行うことで、次世代育成・社員の越境学習および意欲ある学生・社会人との共創機会を創出。
+2. 課題提供（逆ピッチ登壇）：無料（15:20〜）
+   当社の新規事業・地域共創・若年層向けテーマを提示し、Z世代・若手視点のアイデアやインサイトを獲得。
+※無料招待枠は、メンター・課題提供の合計で原則1社2名まで（増減は応相談）。
+
+■ 申込・運営ルール（決裁確認事項）
+・最終申込締切：2027年1月31日（日）まで
+・個人情報・営業制限：主催者より参加者リストの提供はありません。営業、採用、サービス勧誘のみを目的とする行為は、主催者の方針により認められていません。
+・事後関与・変更時：継続関与は任意（義務なし）です。プログラム・時間は変更される場合があり、中止・変更の際は主催窓口から速やかに連絡があります。
+
+■ 詳細確認・お問い合わせ先
+・法人パートナー様向け案内ページ：https://nexus.stki.org/kansai-partner
+・公式サイト：https://nexus.stki.org/
+・連絡先：NEXUS LAB 代表 大湾 啓正（${CONTACT_EMAIL}）`;
+
+const eyebrow = "inline-block pb-1.5 border-b-2 border-amber-500 text-sm font-black tracking-wider text-amber-700 uppercase";
+const h2 = "mt-4 text-2xl sm:text-3xl font-black text-blue-950 tracking-tight leading-tight";
+---
+
+<Layout
+  title="NEXUS SPARK KANSAI | 法人・団体パートナー様向けご案内"
+  description="NEXUS SPARK KANSAI 法人・団体パートナー様向けのご案内ページです。"
+  noindex
+>
+  <Header />
+
+  <!-- Section 0：パーソナライズ・ヘッダーバー（固定ヘッダー h-18 = 4.5rem の直下） -->
+  <div class="mt-18 bg-blue-950 text-white" role="note">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-xs sm:text-sm font-semibold leading-relaxed">
+      <span id="company-name">法人・団体パートナー</span> 様 特別ご提案ページ ｜ NEXUS SPARK KANSAI パートナーシップのご案内
+    </div>
+  </div>
+  <!-- 描画前に社名を差し替える（textContent のみ使用・長さ制限・制御文字除去） -->
+  <script is:inline>
+    (function () {
+      try {
+        var v = new URLSearchParams(location.search).get("company");
+        if (!v) return;
+        v = v
+          .replace(/[\u0000-\u001f\u007f\u200b-\u200f\u2028-\u202e\u2066-\u2069\ufeff]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+          .replace(/\s*(様|御中)$/, "")
+          .slice(0, 40);
+        if (v) document.getElementById("company-name").textContent = v;
+      } catch (e) {}
+    })();
+  </script>
+
+  <main class="grow bg-white text-slate-800">
+    <!-- Section 1：FV -->
+    <section class="py-16 md:py-24 border-b border-slate-200 bg-linear-to-b from-slate-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="space-y-5 max-w-4xl">
+          <span class={eyebrow}>PARTNERSHIP</span>
+          <h1 class="text-[32px] md:text-5xl font-black tracking-tight leading-[1.25] text-blue-950">
+            関西から、日本全国へ。<br />
+            <span class="text-slate-700 text-2xl md:text-3xl">次世代の挑戦者と企業が「本音」で交わる共創の場。</span>
+          </h1>
+          <p class="text-base sm:text-lg font-bold text-blue-950">2027年2月14日（日）開催「NEXUS SPARK KANSAI」法人・団体パートナー様向けご案内</p>
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed">新規事業・地域共創・次世代育成のリアルな接点を、御社の事業フェーズに合わせた柔軟な関わり方で実現します。</p>
+        </div>
+
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {badges.map((b) => (
+            <li class="rounded-xl border border-blue-950/15 bg-white p-5 shadow-xs">
+              <div class="text-xs font-black text-amber-700 tracking-wider">{b.label}</div>
+              <div class="mt-1.5 text-sm sm:text-base font-bold text-blue-950 leading-snug">{b.text}</div>
+            </li>
+          ))}
+        </ul>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="#menu" class="inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-blue-950 hover:bg-blue-900 text-white font-bold text-sm transition-colors">ご参画メニューを見る</a>
+          <a href="#summary" class="inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-white border border-blue-950/30 hover:border-blue-950 text-blue-950 font-bold text-sm transition-colors">社内共有用テキストをコピー</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2：とは -->
+    <section class="py-20 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
+        <div class="lg:col-span-3 space-y-5">
+          <span class={eyebrow}>ABOUT</span>
+          <h2 class={h2}>一方的な会社説明会でも、コンテストでもない。「対等な共創」の6時間。</h2>
+          <p class="text-slate-700 leading-relaxed">「NEXUS SPARK」は、学生（高校生・大学生・大学院生等）と企業・行政の社会人が肩書きを外し、現場のリアルな事業課題・地域課題に混成チームで挑む共創プログラムです。</p>
+          <p class="text-slate-700 leading-relaxed">建前や一方的なPRを排した本音の議論を通じて、企業様にとっても「自社だけでは生まれない若者視点のアイデア獲得」と「社員様の越境学習・次世代育成」を同時に実現します。（※営業、採用、サービス勧誘のみを目的とする行為はご遠慮いただいております。純粋な共創の場として運営しています）</p>
+        </div>
+        <ol class="lg:col-span-2 space-y-4">
+          {features.map((f) => (
+            <li class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+              <div class="text-xs font-black text-amber-700 tracking-wider">{f.no}</div>
+              <h3 class="mt-1 font-black text-blue-950 leading-snug">{f.title}</h3>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">{f.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Section 3：部署別メリット（タブ） -->
+    <section class="py-20 bg-slate-50 border-y border-slate-200 scroll-mt-24" id="benefit">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class={eyebrow}>BENEFIT</span>
+        <h2 class={h2}>貴社の目的・ご担当部署に合わせた活用イメージ</h2>
+
+        <div role="tablist" aria-label="ご担当部署別の活用イメージ" class="mt-8 flex flex-col sm:flex-row gap-2">
+          {tabs.map((t, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${t.id}`}
+              aria-controls={`panel-${t.id}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              tabindex={i === 0 ? 0 : -1}
+              class="tab-btn px-5 py-3 rounded-lg border border-blue-950/20 bg-white text-sm font-bold text-blue-950 text-left transition-colors hover:border-blue-950 aria-selected:bg-blue-950 aria-selected:text-white aria-selected:border-blue-950"
+            >{t.short}</button>
+          ))}
+        </div>
+
+        <div class="mt-6">
+          {tabs.map((t, i) => (
+            <div
+              role="tabpanel"
+              id={`panel-${t.id}`}
+              aria-labelledby={`tab-${t.id}`}
+              class:list={["tab-panel rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 print:block print:mb-4", i !== 0 && "hidden"]}
+            >
+              <h3 class="text-lg sm:text-xl font-black text-blue-950">{t.title}</h3>
+              <ul class="mt-5 space-y-4">
+                {t.items.map((it) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2 w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed"><strong class="font-black text-blue-950">{it.t}</strong>：{it.d}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4：ご参画メニュー -->
+    <section id="menu" class="py-20 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class={eyebrow}>MENU</span>
+        <h2 class={h2}>貴社のご状況に合わせて選べる4つの関わり方</h2>
+        <p class="mt-3 text-slate-600 leading-relaxed"><span class="inline-block mr-2 px-2.5 py-0.5 rounded-full bg-blue-950 text-white text-xs font-black align-middle">組み合わせ自由</span>すべてのメニューは組み合わせ可能です。まずは「メンター参加のみ」からのご参画も大歓迎です。</p>
+
+        <div class="mt-10 space-y-6">
+          <!-- Menu 01 -->
+          <article class="rounded-2xl border-2 border-amber-500 bg-white p-6 sm:p-8 relative">
+            <span class="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-amber-500 text-white text-xs font-black">推奨・標準プラン</span>
+            <div class="text-xs font-black text-amber-700 tracking-wider">MENU 01｜推奨・中心プログラム</div>
+            <h3 class="mt-1 text-xl font-black text-blue-950">メンター参加<span class="ml-2 text-sm font-bold text-slate-600">（費用：無料）</span></h3>
+            <dl class="mt-4 space-y-3 text-sm sm:text-base text-slate-700 leading-relaxed">
+              <div><dt class="font-black text-blue-950">内容</dt><dd>17:20〜18:40の「CO-CREATION LAB」にて、混成チーム（複数チームを巡回）の議論に対して、ビジネスの現場視点からフィードバック・助言をいただきます。</dd></div>
+              <div><dt class="font-black text-blue-950">所要時間</dt><dd>80分間のみ（17:20〜18:40）のスポット参加が可能です（13:00からの全編参加も歓迎いたします）。</dd></div>
+              <div><dt class="font-black text-blue-950">無料ご招待枠</dt><dd>{FREE_SEATS}</dd></div>
+              <div><dt class="font-black text-blue-950">備考</dt><dd>直前合流でもスムーズに議論へ入っていただけるよう、運営より各チームのテーマ概要シートを事前共有いたします。</dd></div>
+            </dl>
+          </article>
+
+          <!-- Menu 02 -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <div class="text-xs font-black text-amber-700 tracking-wider">MENU 02｜事業・地域連携に最適</div>
+            <h3 class="mt-1 text-xl font-black text-blue-950">課題提供（逆ピッチ登壇）<span class="ml-2 text-sm font-bold text-slate-600">（費用：無料）</span></h3>
+            <dl class="mt-4 space-y-3 text-sm sm:text-base text-slate-700 leading-relaxed">
+              <div><dt class="font-black text-blue-950">内容</dt><dd>15:20〜の「逆ピッチ（1社5〜7分程度）」にて、貴社が現在抱えているリアルな事業課題・地域課題・新規事業テーマをご提示いただきます。機密情報や詳細な数値データは不要です。</dd></div>
+              <div>
+                <dt class="font-black text-blue-950">ご提示いただく課題のテーマ例</dt>
+                <dd>
+                  <ul class="mt-1 list-disc pl-5 space-y-1">
+                    <li>特定エリア・地域の回遊性を高める、若者向けの新たな体験価値の創出</li>
+                    <li>Z世代のライフスタイル変化を踏まえた、既存アセットの新規活用アイデア</li>
+                    <li>若年層に自社の取り組み・ブランドを「自分ごと」として届けるコミュニケーション設計</li>
+                  </ul>
+                </dd>
+              </div>
+              <div><dt class="font-black text-blue-950">無料ご招待枠</dt><dd>{FREE_SEATS}</dd></div>
+              <div><dt class="font-black text-blue-950">備考</dt><dd>Menu 01（メンター参加）とセットでご参画いただくことで、自社テーマを選んだチームの議論に直接助言いただけます。</dd></div>
+            </dl>
+          </article>
+
+          <!-- Menu 03 -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <div class="text-xs font-black text-amber-700 tracking-wider">MENU 03｜PR・ブランド露出</div>
+            <h3 class="mt-1 text-xl font-black text-blue-950">協賛パートナー</h3>
+            <p class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">イベント運営へのご支援とともに、会場内でのロゴ掲出、ご挨拶枠、参加者へのパンフレット・ノベルティ配布などの広報・PR特典をご提供します（※個人情報保護およびイベント規約に基づき、参加者リストの提供は行っておりません）。</p>
+            <div class="mt-5 overflow-x-auto">
+              <table class="w-full min-w-[34rem] text-sm text-left border border-slate-200">
+                <caption class="sr-only">協賛プラン比較表</caption>
+                <thead class="bg-blue-950 text-white">
+                  <tr>
+                    <th scope="col" class="px-4 py-3 font-bold whitespace-nowrap">プラン名</th>
+                    <th scope="col" class="px-4 py-3 font-bold">金額（消費税の扱いはお問い合わせください）</th>
+                    <th scope="col" class="px-4 py-3 font-bold">主な特典内容</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  {plans.map((p) => (
+                    <tr class="align-top">
+                      <th scope="row" class="px-4 py-3 font-black text-blue-950 whitespace-nowrap">{p.name}</th>
+                      <td class="px-4 py-3 font-bold whitespace-nowrap">{p.price}</td>
+                      <td class="px-4 py-3 text-slate-700 leading-relaxed">{p.perks}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-3 text-xs sm:text-sm text-slate-600">お支払い条件・請求書・中止時の取扱いは、ご検討の際に個別にご案内いたします。</p>
+          </article>
+
+          <!-- Menu 04 -->
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <div class="text-xs font-black text-amber-700 tracking-wider">MENU 04｜まずは応援から</div>
+            <h3 class="mt-1 text-xl font-black text-blue-950">集客・告知協力<span class="ml-2 text-sm font-bold text-slate-600">（費用：無料）</span></h3>
+            <p class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">貴社内の若手社員様・関連コミュニティ・提携学校等へのイベント情報共有やSNSでの拡散にご協力いただきます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5：タイムテーブル -->
+    <section class="py-20 bg-slate-50 border-y border-slate-200 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class={eyebrow}>TIMETABLE</span>
+        <h2 class={h2}>当日のプログラム進行（2027年2月14日 13:00〜20:00）</h2>
+        <p class="mt-3 text-slate-600 leading-relaxed">色付きの枠（14:10／15:20／17:20）が、パートナー企業様にご登壇・ご参加いただくメイン時間帯です。</p>
+        <div class="mt-8 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+          <table class="w-full min-w-[34rem] text-sm text-left">
+            <caption class="sr-only">当日タイムテーブル</caption>
+            <thead class="bg-blue-950 text-white">
+              <tr>
+                <th scope="col" class="px-4 py-3 font-bold whitespace-nowrap">時間</th>
+                <th scope="col" class="px-4 py-3 font-bold">プログラム名</th>
+                <th scope="col" class="px-4 py-3 font-bold">内容・企業様の関わり方</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              {timetable.map((r) => (
+                <tr class:list={["align-top", r.hi && "bg-amber-50 border-l-4 border-amber-500"]}>
+                  <td class="px-4 py-3 font-black tabular-nums whitespace-nowrap text-blue-950">{r.time}</td>
+                  <td class="px-4 py-3 font-bold text-blue-950">{r.title}</td>
+                  <td class="px-4 py-3 text-slate-700 leading-relaxed">{r.desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-xs text-slate-500">※プログラム・時間は変更する場合があります。</p>
+      </div>
+    </section>
+
+    <!-- Section 6：稟議用サマリー -->
+    <section id="summary" class="py-20 scroll-mt-24">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class={eyebrow}>FOR APPROVAL</span>
+        <h2 class={h2}>社内でのご検討・稟議申請用サマリー</h2>
+        <p class="mt-3 text-slate-600 leading-relaxed">上司の方へのご共有や社内チャット・稟議書への貼り付けに、以下のテキストをそのままご活用ください。</p>
+
+        <div class="mt-6 relative rounded-xl border border-slate-200 bg-slate-100">
+          <div class="flex items-center justify-end gap-3 px-4 pt-3">
+            <span id="copy-status" role="status" aria-live="polite" class="text-sm font-bold text-emerald-700"></span>
+            <button id="copy-btn" type="button" class="inline-flex items-center px-4 py-2 rounded-lg bg-blue-950 hover:bg-blue-900 text-white text-sm font-bold transition-colors">テキストをコピーする</button>
+          </div>
+          <pre id="summary-text" class="px-5 pb-5 pt-3 whitespace-pre-wrap break-words font-sans text-sm leading-relaxed text-slate-800 select-all">{summaryText}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7：開催概要・主催団体・お問い合わせ -->
+    <section class="py-20 bg-slate-50 border-t border-slate-200 scroll-mt-24" id="contact">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-xl font-black text-blue-950">開催概要</h2>
+          <dl class="mt-4 rounded-xl border border-slate-200 bg-white divide-y divide-slate-200 text-sm">
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">イベント名</dt><dd>NEXUS SPARK KANSAI</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">開催日時</dt><dd>2027年2月14日（日）14:00〜20:00（13:00開場・受付開始）</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">会場</dt><dd>GROWTH京都河原町（〒600-8001 京都市下京区四条通河原町東入真町68番地 京都河原町ガーデン8階）</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">参加予定人数</dt><dd>計100名予定（学生50名［高校生・大学生・大学院生等］・社会人50名）</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">参加費</dt><dd>学生 無料 ／ 一般社会人 事前1,500円・当日2,500円（※パートナー企業様のメンター・ご登壇枠は、原則1社2名まで無料ご招待（増減は応相談））</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">認定</dt><dd>Global Startup EXPO 2026（GSE2026）公式サイドイベント</dd></div>
+          </dl>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-black text-blue-950">主催団体情報</h2>
+          <dl class="mt-4 rounded-xl border border-slate-200 bg-white divide-y divide-slate-200 text-sm">
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">団体名</dt><dd>NEXUS LAB（ネクサスラボ）</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">ミッション</dt><dd>「学生と企業と行政が本気で本音でぶつかれる共創の場を日本全国につくる」</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">代表</dt><dd>大湾 啓正（京都外国語大学 在学）</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">副代表</dt><dd>平尾 美空乃（企画・広報担当）、真崎 岳（渉外・つながり担当）</dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">公式サイト</dt><dd><a href="https://nexus.stki.org/" class="text-blue-800 underline underline-offset-2 break-all">https://nexus.stki.org/</a></dd></div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3 p-4"><dt class="font-black text-blue-950">お問い合わせメール</dt><dd class="break-all">{CONTACT_EMAIL}</dd></div>
+          </dl>
+          <a href={mailto} class="mt-5 inline-flex items-center justify-center w-full sm:w-auto px-7 py-4 rounded-lg bg-blue-950 hover:bg-blue-900 text-white font-bold text-sm text-center transition-colors">メールで参画・面談の相談をする（{CONTACT_EMAIL}）</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+    // --- タブ切り替え ---
+    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const select = (index: number, focus = false) => {
+      tabs.forEach((tab, i) => {
+        const on = i === index;
+        tab.setAttribute("aria-selected", on ? "true" : "false");
+        tab.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(tab.getAttribute("aria-controls") ?? "");
+        panel?.classList.toggle("hidden", !on);
+        if (on && focus) tab.focus();
+      });
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(i));
+      tab.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); select((i + 1) % tabs.length, true); }
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); select((i - 1 + tabs.length) % tabs.length, true); }
+        else if (e.key === "Home") { e.preventDefault(); select(0, true); }
+        else if (e.key === "End") { e.preventDefault(); select(tabs.length - 1, true); }
+      });
+    });
+
+    // --- ワンクリックコピー（アプリ内ブラウザ向けフォールバック付き） ---
+    const btn = document.getElementById("copy-btn");
+    const status = document.getElementById("copy-status");
+    const box = document.getElementById("summary-text");
+    let timer: number | undefined;
+
+    const legacyCopy = (text: string) => {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;";
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    };
+    const copyText = async (text: string) => {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch { /* フォールバックへ */ }
+      return legacyCopy(text);
+    };
+
+    btn?.addEventListener("click", async () => {
+      if (!box || !status) return;
+      const ok = await copyText(box.textContent ?? "");
+      status.className = `text-sm font-bold ${ok ? "text-emerald-700" : "text-rose-700"}`;
+      status.textContent = ok ? "コピーしました" : "コピーできませんでした。テキストを選択してコピーしてください";
+      if (!ok) {
+        const range = document.createRange();
+        range.selectNodeContents(box);
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+      }
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => { status.textContent = ""; }, 3000);
+    });
+  </script>
+</Layout>
