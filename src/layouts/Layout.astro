@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  noindex?: boolean;
 }
 
 const {
   title = "NEXUS LAB | 学生と企業が本気でぶつかり合う共創プラットフォーム",
   description = "学生団体NEXUS LAB公式サイト。学生と社会をつなぎ、次世代の挑戦を加速させるプラットフォーム。",
-  image = "/nexus_logo_full.png"
+  image = "/nexus_logo_full.png",
+  noindex = false,
 } = Astro.props;
 const ogImage = new URL(image, Astro.site ?? Astro.url).href;
 ---
@@ -22,6 +24,7 @@ const ogImage = new URL(image, Astro.site ?? Astro.url).href;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="google-site-verification" content="U3N1SPErYZ6hcrPgWswh8WCyACwLkJXfE7c7QNofrBQ" />
 
     <!-- Primary Meta Tags -->
